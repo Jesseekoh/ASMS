@@ -11,7 +11,6 @@ export const loginAction = async ({ request }) => {
     password: data.get('password'),
   }
 
-  getUser(submission.email, submission.password)
-
-  return redirect('/dashboard')
+  const user = getUser(submission.email, submission.password)
+  return user
 }

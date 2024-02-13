@@ -1,16 +1,42 @@
 import { useContext } from 'react'
 import { Form } from 'react-router-dom'
 import userDetailsContext from '../../contexts/userDetailsContext'
-// import { userDetailsContext } from '../../contexts/userDetailsContext'
+import { useActionData } from 'react-router-dom'
+import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useState } from 'react'
 const LoginForm = () => {
-  const userDetails = useContext(userDetailsContext)
-  console.log(userDetails)
-  const handleLogin = () => {}
+  const actionData = useActionData()
+  const navigate = useNavigate()
+  const { userDetails, setUserDetails } = useContext(userDetailsContext)
+
+  // console.log(actionData)
+  const handleLogin = (event) => {
+    console.log('handle log in')
+    event.preventDefault()
+    console.log(actionData)
+    setUserDetails({
+      username: actionData.username,
+      fullName: actionData.fullName,
+      isLoggedIn: true,
+    })
+    navigate('/dashboard')
+  }
+  useEffect(() => {
+    console.log('This is useEffect')
+    if (userDetails.isLoggedIn) {
+      console.log('is logged in')
+      navigate('/dashboard')
+    }
+  }, [])
+
   return (
     <div>
       <Form
         method="post"
         action="/login"
+        // onSubmit={handleLogin}
         className="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12"
       >
         <div className="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
@@ -39,7 +65,7 @@ const LoginForm = () => {
               />
               <button
                 type="submit"
-                onSubmit={handleLogin}
+                // onClick={handleLogin}
                 className="transition duration-200 bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 focus:shadow-sm focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-sm shadow-sm hover:shadow-md font-semibold text-center inline-block"
               >
                 <span className="inline-block mr-2">Login</span>

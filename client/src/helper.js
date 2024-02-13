@@ -14,9 +14,9 @@ export const fetchAnnouncements = async () => {
 }
 
 export const getUser = (email, password) => {
-  users.map((user) => {
+  for (let user of users) {
     if (email == user.email && password === user.password) {
       return user
     }
-  })
+  }
 }

@@ -1,5 +1,5 @@
 // eslint-disable-next-line react/prop-types
-const AnnouncementsList = ({ announcements }) => {
+const AnnouncementsList = () => {
   return (
     <>
       <h1>1</h1>

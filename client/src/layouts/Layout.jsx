@@ -1,10 +1,12 @@
-import { Outlet } from 'react-router-dom'
+// import { Outlet } from 'react-router-dom'
 import Nav from '../components/Nav/Nav'
 import { fetchData } from '../helper'
-import { useLoaderData } from 'react-router-dom'
-import SideNav from '../components/SideNav/SideNav'
+// import { useLoaderData } from 'react-router-dom'
+// import SideNav from '../components/SideNav/SideNav'
 import { useContext } from 'react'
 import userDetailsContext from '../contexts/userDetailsContext'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const layoutLoader = () => {
   const userName = fetchData('userName')
@@ -13,16 +15,23 @@ export const layoutLoader = () => {
 }
 
 const Layout = () => {
+  const navigate = useNavigate()
   // const { userName } = useLoaderData()
-  const userDetails = useContext(userDetailsContext)
-  const username = userDetails.username
+  const { userDetails, setUserDetails } = useContext(userDetailsContext)
+  console.log(userDetails)
+  // const username = details.username
+  useEffect(() => {
+    if (!userDetails.isLoggedIn) {
+      navigate('/login')
+    }
+  }, [])
   return (
     <>
-      <Nav userName={userDetails.username} />
-      {username && <SideNav />}
+      <Nav />
+      {/* {username && <SideNav />}
       <div className="ml-[300px]">
         <Outlet />
-      </div>
+      </div> */}
     </>
   )
 }
