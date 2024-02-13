@@ -39,6 +39,7 @@ class Student(BaseModel, Base):
         major_id = Column(String(60), ForeignKey('majors.id'), nullable=False)
         state_id  = Column(String(60), ForeignKey('states.id'), nullable=False)
         announcements = relationship('Announcement', secondary=students_announcement, backref='students', viewonly=False)
+        profile_pic = relationship('Profile_picture', backref='students', cascade='all, delete, delete-orphan')
         fees = relationship('Fees', backref='student', cascade='all, delete, delete-orphan')
         results = relationship('Result', secondary=students_results, backref='students', viewonly=False)
     else:

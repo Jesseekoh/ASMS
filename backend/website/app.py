@@ -12,7 +12,10 @@ from website.routes import app_routes
 from website.routes import session
 import secrets
 
+UPLOAD_FOLDER = '/home/edward/ASMS/backend/website/static/uploads'
+
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 

@@ -17,10 +17,12 @@ from models.state import State
 from models.result import Result
 from models.level import Level
 from models.semister import Semister
+from models.profile_pic import Profile_picture
 import shlex  # for splitting the line along spaces except in double quotes
 classes = {"Student": Student, "Major": Major, "Faculty": Faculty,
-           "Fees": Fees, "Course": Course, "Announcement": Announcement,
-           "Result": Result, "State": State, "Semister": Semister, "Level": Level}
+        "Profile_picture": Profile_picture, "Fees": Fees, "Course": Course,
+        "Announcement": Announcement, "State": State, "Level": Level, "Semister": Semister}
+
 relationship = ['Student', 'Course', 'Major']
 
 class ASMSCommand(cmd.Cmd):

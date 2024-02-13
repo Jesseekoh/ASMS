@@ -15,11 +15,12 @@ from models.state import State
 from models.faculty import Faculty
 from models.level import Level
 from models.semister import Semister
+from models.profile_pic import Profile_picture
 from hashlib import md5
 
-classes = {"Student": Student, "Major": Major, "Faculty": Faculty,
-           "Fees": Fees, "Course": Course, "Announcement": Announcement,
-           "State": State, "Level": Level, "Semister": Semister}
+classes = {"Student": Student, "Major": Major, "Faculty": Faculty, "Fees": Fees,
+        "Course": Course, "Announcement": Announcement, "Profile_picture": Profile_picture,
+        "Result": Result, "State": State, "Level": Level, "Semister": Semister}
 
 class FileStorage:
     """serializes instances to a JSON file & deserializes back to instances"""
