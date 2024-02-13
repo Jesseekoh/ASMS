@@ -1,0 +1,13 @@
+route: /api/v1/states
+
+methods:
+
+GET: Return all states in the database
+
+json-data:
+
+[
+	{id: state}, 
+	{..}, 
+	...
+]

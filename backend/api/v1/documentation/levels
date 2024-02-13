@@ -1,0 +1,18 @@
+route: /api/v1/levels
+
+methods:
+
+GET: Return all levels available for the school
+
+json-data:
+
+[
+	{
+		"id": "0cb2bb10-ce6b-420b-9932-0ff0be9e1e3b",
+		"level": 4
+	},
+
+	{..},
+
+	...
+]

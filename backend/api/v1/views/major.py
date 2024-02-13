@@ -6,8 +6,8 @@ from models.major import Major
 
 
 @app_views.route('/majors', methods=['GET'], strict_slashes=False)
-def all_major():
-    """return all major"""
+def all_majors():
+    """return all majors"""
     result = []
     values = {}
     majors = storage.all(Major)
