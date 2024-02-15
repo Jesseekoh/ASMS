@@ -38,7 +38,6 @@ CREATE TABLE `announcements` (
 
 LOCK TABLES `announcements` WRITE;
 /*!40000 ALTER TABLE `announcements` DISABLE KEYS */;
-INSERT INTO `announcements` VALUES ('Vice_Chancelor','A level 1 student should assemble at the addmission block on Monday 30 Feb. for their examination number. Please endevour to be there on time!','434d882a-73f1-47c2-9484-f31d2f25b257','2024-02-10 21:01:37','2024-02-10 21:04:26');
 /*!40000 ALTER TABLE `announcements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,7 +143,7 @@ CREATE TABLE `levels` (
 
 LOCK TABLES `levels` WRITE;
 /*!40000 ALTER TABLE `levels` DISABLE KEYS */;
-INSERT INTO `levels` VALUES (4,'0cb2bb10-ce6b-420b-9932-0ff0be9e1e3b','2024-02-10 20:24:37','2024-02-10 20:24:37'),(3,'2e5819e2-05bd-4884-9989-a569d775318b','2024-02-10 20:24:34','2024-02-10 20:24:34'),(1,'3249352e-d5c9-4ca5-a0e6-e6eeeacdffcb','2024-02-10 20:24:28','2024-02-10 20:24:28'),(2,'fc516ff2-c647-4356-b31d-182935faf633','2024-02-10 20:24:31','2024-02-10 20:24:31');
+INSERT INTO `levels` VALUES (400,'2edb76ee-a467-43ae-ab28-a8264d8637b2','2024-02-15 15:15:13','2024-02-15 15:15:13'),(300,'4795b820-140d-4d0a-9821-9bbfc01c5ef0','2024-02-15 15:15:10','2024-02-15 15:15:10'),(200,'744eef4f-b890-4b4e-8263-12f454449500','2024-02-15 15:15:06','2024-02-15 15:15:06'),(100,'b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','2024-02-15 15:15:02','2024-02-15 15:15:02');
 /*!40000 ALTER TABLE `levels` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +264,6 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES ('3249352e-d5c9-4ca5-a0e6-e6eeeacdffcb','72fbc53c-2bf8-412b-8507-ad120e6c38a6','7ffb7f7a-a13c-43f9-a1ff-e452ccf22cb8',51,'5083a19a-b1e8-4b2e-b347-87305af77cfc','2024-02-10 20:52:49','2024-02-10 20:52:49'),('fc516ff2-c647-4356-b31d-182935faf633','72fbc53c-2bf8-412b-8507-ad120e6c38a6','7ffb7f7a-a13c-43f9-a1ff-e452ccf22cb8',45,'7e431198-fbdd-404f-8757-68e50697ec4b','2024-02-10 21:13:47','2024-02-11 00:06:18'),('3249352e-d5c9-4ca5-a0e6-e6eeeacdffcb','72fbc53c-2bf8-412b-8507-ad120e6c38a6','2934e8b1-8628-4a87-a38a-6f00d6c24d31',71,'8262450c-ec68-4600-9841-55639b779604','2024-02-10 20:50:04','2024-02-10 20:54:38'),('3249352e-d5c9-4ca5-a0e6-e6eeeacdffcb','72fbc53c-2bf8-412b-8507-ad120e6c38a6','4aa74d44-b19c-4023-aed9-87e2284591ac',68,'fd2d989a-a778-4c5c-ba36-1689579ffce2','2024-02-10 20:52:18','2024-02-10 20:52:18');
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +315,7 @@ CREATE TABLE `states` (
 
 LOCK TABLES `states` WRITE;
 /*!40000 ALTER TABLE `states` DISABLE KEYS */;
-INSERT INTO `states` VALUES ('River State','23b807fd-336d-4e3b-bb15-f428e65650b0','2024-02-08 13:07:32','2024-02-08 13:07:32'),('Taraba','33f73ac6-8cc6-4f98-959f-999f0d27d850','2024-02-08 13:08:05','2024-02-08 13:08:05'),('Cross River','95bdf786-02ed-4cf4-a7e8-f5058af076ff','2024-02-08 13:06:55','2024-02-08 13:06:55'),('Lagos','af0d45f7-594a-46a8-9e75-9ff917513231','2024-02-08 13:07:13','2024-02-08 13:07:13'),('Kano','e6a06192-32e8-4cf8-8031-a0552aee667a','2024-02-08 13:07:52','2024-02-08 13:07:52');
+INSERT INTO `states` VALUES ('Lagos','27df4456-62d3-4dd5-bcc1-bcdb686c9271','2024-02-15 15:11:14','2024-02-15 15:11:14'),('Taraba','3fb7cbcd-9a09-491a-9ff8-9fd4f482936b','2024-02-15 15:11:49','2024-02-15 15:11:49'),('Port-Harcourt','651f7742-840e-48d2-9192-60a6b660bb71','2024-02-15 15:12:20','2024-02-15 15:12:20'),('Abuja','69584a24-fe93-4c3f-bf9a-66147b9d130c','2024-02-15 15:11:38','2024-02-15 15:11:38'),('Edo','bf882416-f325-4c0f-86e7-b8d10511aed7','2024-02-15 15:11:32','2024-02-15 15:11:32'),('Anambra','e78a82a6-0503-4160-8eb5-d3474327d947','2024-02-15 15:11:59','2024-02-15 15:11:59'),('Cross River','f1b972ac-8f2a-478b-b926-40ca47bfa9a4','2024-02-15 15:11:25','2024-02-15 15:11:25');
 /*!40000 ALTER TABLE `states` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,7 +342,6 @@ CREATE TABLE `student_courses` (
 
 LOCK TABLES `student_courses` WRITE;
 /*!40000 ALTER TABLE `student_courses` DISABLE KEYS */;
-INSERT INTO `student_courses` VALUES ('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','2934e8b1-8628-4a87-a38a-6f00d6c24d31'),('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','4aa74d44-b19c-4023-aed9-87e2284591ac'),('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','7ffb7f7a-a13c-43f9-a1ff-e452ccf22cb8');
 /*!40000 ALTER TABLE `student_courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,6 +357,7 @@ CREATE TABLE `students` (
   `last_name` varchar(70) DEFAULT NULL,
   `student_id` varchar(20) NOT NULL,
   `email` varchar(128) NOT NULL,
+  `gender` varchar(20) NOT NULL,
   `password` varchar(128) NOT NULL,
   `level_id` varchar(60) NOT NULL,
   `major_id` varchar(60) NOT NULL,
@@ -383,7 +381,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('Edward','Odey','6E114BB04E44','edwardodey00@gmail.com','49ad23d1ec9fa4bd8d77d02681df5cfa','3249352e-d5c9-4ca5-a0e6-e6eeeacdffcb','ef0ea08b-0122-4f82-91f5-cf4f7314e417','23b807fd-336d-4e3b-bb15-f428e65650b0','a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','2024-02-10 20:42:06','2024-02-10 20:42:06'),('Jesse','Ekoh','D3357A22FB88','jesseekoh@gmail.com','b59c67bf196a4758191e42f76670ceba','3249352e-d5c9-4ca5-a0e6-e6eeeacdffcb','ef0ea08b-0122-4f82-91f5-cf4f7314e417','af0d45f7-594a-46a8-9e75-9ff917513231','d6ff0fb5-a299-44c5-9e23-d3357a22fb88','2024-02-11 00:36:47','2024-02-11 00:36:47');
+INSERT INTO `students` VALUES ('Edward','Odey','39AAFA346F39','edwardodey00@gmail.com','Male','49ad23d1ec9fa4bd8d77d02681df5cfa','b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','ef0ea08b-0122-4f82-91f5-cf4f7314e417','f1b972ac-8f2a-478b-b926-40ca47bfa9a4','d3a1d128-77f0-47c4-9794-39aafa346f39','2024-02-15 15:15:38','2024-02-15 15:15:38');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,7 +408,6 @@ CREATE TABLE `students_announcement` (
 
 LOCK TABLES `students_announcement` WRITE;
 /*!40000 ALTER TABLE `students_announcement` DISABLE KEYS */;
-INSERT INTO `students_announcement` VALUES ('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','434d882a-73f1-47c2-9484-f31d2f25b257');
 /*!40000 ALTER TABLE `students_announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -437,7 +434,6 @@ CREATE TABLE `students_results` (
 
 LOCK TABLES `students_results` WRITE;
 /*!40000 ALTER TABLE `students_results` DISABLE KEYS */;
-INSERT INTO `students_results` VALUES ('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','5083a19a-b1e8-4b2e-b347-87305af77cfc'),('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','7e431198-fbdd-404f-8757-68e50697ec4b'),('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','8262450c-ec68-4600-9841-55639b779604'),('a4a3128b-b1d9-4fa4-bc0a-6e114bb04e44','fd2d989a-a778-4c5c-ba36-1689579ffce2');
 /*!40000 ALTER TABLE `students_results` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -450,4 +446,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-13 16:21:47
+-- Dump completed on 2024-02-15 16:33:50
