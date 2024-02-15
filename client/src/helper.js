@@ -1,22 +1,21 @@
-import { users } from './utils/users'
-
-export const fetchData = (key) => {
-  // const data = JSON.parse(localStorage.getItem(key))
-  return JSON.parse(localStorage.getItem(key))
-  // return data
+// Token session storage
+// set usertoken to session storage
+export const setSessionToken = (userToken) => {
+  sessionStorage.setItem('token', JSON.stringify(userToken))
 }
 
-export const fetchAnnouncements = async () => {
-  const resp = await fetch('http://localhost:3006/api/v1/restaurants')
-  const json = await resp.json()
-  // console.log(json)
-  return json.data.restaurants
+// get usertoken from session storage
+export const getSessionToken = () => {
+  const tokenString = sessionStorage.getItem('token')
+  const userToken = JSON.parse(tokenString)
+  return userToken
 }
 
-export const getUser = (email, password) => {
-  for (let user of users) {
-    if (email == user.email && password === user.password) {
-      return user
-    }
-  }
+// fetch info to display in the dashboard route
+export async function fetchDashboardDetails() {
+  const response = await fetch('http://localhost:5000/dashboard', {
+    credentials: 'include',
+  })
+  const json = await response.json()
+  return json
 }

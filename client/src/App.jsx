@@ -1,94 +1,83 @@
+import { createBrowserRouter } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import './App.css'
-import { createBrowserRouter, useNavigate } from 'react-router-dom'
+import Layout from './layout/Layout'
 import { RouterProvider } from 'react-router-dom'
-import Root from './routes/Root'
-import Error from './routes/Error'
-import { useState } from 'react'
-import Layout, { layoutLoader } from './layouts/Layout'
-import Dashboard from './routes/Dashboard'
-import Login from './routes/Login'
-import Announcements from './components/Announcements/AnnouncementList'
-import userDetailsContext from './contexts/userDetailsContext'
-// import { QueryClient, QueryClientContext } from '@tanstack/react-query'
-import SignUp from './routes/SignUp'
-import { loginAction } from './actions/login'
-import { fakeAuthProvider } from './Auth'
-import { useEffect } from 'react'
-// import { BrowserRouter } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import Biodata from './pages/Biodata'
+import ErrorPage from './pages/ErrorPage'
+import Register from './pages/Register'
+import Announcements from './pages/Announcements'
+import Courses from './pages/Courses'
+import Login from './pages/Login'
+import RequireAuth from './components/RequireAuth'
 
-// const queryClient = new QueryClient({
-//   defaultOptions: {
-//     queries: {
-//       staleTime: Infinity,
-//       cacheTime: Infinity,
-//     },
-//   },
-// })
-const routes = createBrowserRouter([
-  {
-    element: <Layout />,
-    errorElement: <Error />,
-    // loader: layoutLoader,
-    loader() {
-      // Our root route always provides the user, if logged in
-      return { user: fakeAuthProvider.username }
-    },
-    children: [
-      // {
-      //   index: true,
-      //   element: <Login />,
-      //   // loader: layoutLoader
-      //   errorElement: <Error />,
-
-      // },
-      {
-        path: '/',
-        element: <Root />,
-        // loader: layoutLoader
-        errorElement: <Error />,
-      },
-      {
-        path: '/dashboard',
-        element: <Dashboard />,
-        errorElement: <Error />,
-        // loader: dashboardLoader,
-      },
-      {
-        path: '/announcements',
-        element: <Announcements />,
-        errorElement: <Error />,
-      },
-    ],
-  },
-  {
-    path: '/login',
-    element: <Login />,
-    action: loginAction,
-  },
-  {
-    path: '/signup',
-    element: <SignUp />,
-    errorElement: <Error />,
-  },
-])
+const queryClient = new QueryClient()
 
 function App() {
-  // const [userName, setUserName] = useState('')
-  const [userDetails, setUserDetails] = useState({
-    username: '',
-    fullName: '',
-    isLoggedIn: false,
-  })
+  const router = createBrowserRouter([
+    {
+      element: <Layout />,
+
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: '/',
+          element: (
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          ),
+        },
+
+        {
+          path: '/dashboard',
+          element: (
+            <RequireAuth>
+              <Dashboard />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: '/biodata',
+          element: (
+            <RequireAuth>
+              <Biodata />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: '/courses',
+          element: (
+            <RequireAuth>
+              <Courses />
+            </RequireAuth>
+          ),
+        },
+        {
+          path: '/announcements',
+          element: (
+            <RequireAuth>
+              <Announcements />
+            </RequireAuth>
+          ),
+        },
+      ],
+    },
+    {
+      path: '/register',
+      element: <Register />,
+    },
+    {
+      path: '/login',
+      element: <Login />,
+    },
+  ])
 
   return (
-    <>
-      {/* <QueryClientContext client={queryClient}> */}
-
-      <userDetailsContext.Provider value={{ userDetails, setUserDetails }}>
-        <RouterProvider router={routes} />
-      </userDetailsContext.Provider>
-      {/* </QueryClientContext> */}
-    </>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   )
 }
 

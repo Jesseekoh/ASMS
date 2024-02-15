@@ -1,0 +1,51 @@
+import { Link } from 'react-router-dom'
+import { useAppStore } from '../../store'
+// import { useNavigate } from 'react-router-dom'
+// import { redirect } from 'react-router-dom'
+
+const Navbar = () => {
+  const { username, setUsername } = useAppStore((state) => ({
+    username: state.username,
+    setUsername: state.setUsername,
+  }))
+  const { isLoggedIn, setIsLoggedIn } = useAppStore((state) => ({
+    isLoggedIn: state.isLoggedIn,
+    setIsLoggedIn: state.setIsLoggedIn,
+  }))
+  console.log(username)
+
+  return (
+    <header className="bg-white sticky top-0">
+      <nav className="nav">
+        <div className="container px-4 py-3 flex justify-between items-center">
+          <Link to={'/'}>
+            <h3 className="text-2xl font-bold inline-block p-1 border-4 border-black">
+              ASMS
+            </h3>
+          </Link>
+          <div className="nav-links flex gap-5">
+            {username ? (
+              <>
+                <span className="font-bold">{username}</span>
+                <Link to={'/logout'} className="font-bold">
+                  Log out
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to={'/register'} className="font-bold">
+                  Register
+                </Link>
+                <Link to={'/login'} className="font-bold">
+                  Log in
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      </nav>
+    </header>
+  )
+}
+
+export default Navbar
