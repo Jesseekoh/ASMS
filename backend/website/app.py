@@ -16,14 +16,15 @@ UPLOAD_FOLDER = '/home/edward/ASMS/backend/website/static/uploads'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'
 app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 
-CORS(app, resources={r"/*": {"origins": "*"}}, allow_headers=['Access-Control-Allow-Credentials'])
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 @app.route('/', strict_slashes=False)
-@cross_origin(supports_credentials=True)
+# @cross_origin(supports_credentials=True)
 
 def main():
     return render_template('index.html')
@@ -44,6 +45,7 @@ def login():
             email  = data['email']
             if md5(password.encode()).hexdigest() == student.password:
                 session['id'] = student.id
+                session['SameSite'] = "None"
                 studentValue = formatStudent(student)
                 studentValue['url'] = '/dashboard'
                 return jsonify(studentValue), 200
@@ -100,8 +102,9 @@ def dashbord():
     if 'id' in session:
         student = storage.get(Student, session['id'])
         if student:
-            # return jsonify({"msg": "dashboard loaded"})
-            return render_template('dashbord.html', student=student)
+            
+            return jsonify(student.to_dict())
+            # return render_template('dashbord.html', student=student)
 
     return redirect(url_for('login'))
 
