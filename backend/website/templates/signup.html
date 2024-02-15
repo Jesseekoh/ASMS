@@ -23,6 +23,9 @@
 		<label for="password">level:</label><br>
 		<input type="text" id="level"><br>
 		<br>
+		<label for="gender">Gender:</label><br>
+		<input type="text" id="gender"><br>
+		<br>
 		<label for="password">password:</label><br>
 		<input type="password" id="password"><br>
 		<br>
@@ -41,6 +44,7 @@ $('form').submit(function(event) {
                 "major_id": $('#dep_id').val(),
                 "state_id": $('#state_id').val(),
                 "level_id": $('#level').val(),
+                "gender": $('#gender').val(),
                 "email": $('#email').val(),
                 "password": $('#password').val(),
         }

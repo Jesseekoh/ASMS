@@ -34,6 +34,7 @@ class Student(BaseModel, Base):
         last_name = Column(String(70), nullable=True)
         student_id = Column(String(20), nullable=False)
         email = Column(String(128), nullable=False)
+        gender = Column(String(20), nullable=False)
         password = Column(String(128), nullable=False)
         level_id = Column(String(60), ForeignKey('levels.id'), nullable=False)
         major_id = Column(String(60), ForeignKey('majors.id'), nullable=False)

@@ -90,6 +90,10 @@ def formatStudent(student):
     del studentValue['major_id']
     del studentValue['state_id']
     del studentValue['__class__']
+    del studentValue['level_id']
+    del studentValue['id']
+    studentValue['level'] = student.levels.number
+    studentValue['gender'] = student.gender
     studentValue['url'] = '/login'
 
     return studentValue
@@ -97,15 +101,15 @@ def formatStudent(student):
 @app.route('/dashboard', strict_slashes=False)
 @cross_origin(supports_credentials=True)
 def dashbord():
-
-
+    """return student basic information"""
     if 'id' in session:
         student = storage.get(Student, session['id'])
         if student:
+            studentValue = formatStudent(student)
+            del studentValue['url']
             
-            return jsonify(student.to_dict())
+            return jsonify(studentValue)
             # return render_template('dashbord.html', student=student)
-
     return redirect(url_for('login'))
 
 

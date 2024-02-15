@@ -28,7 +28,8 @@ class Validate:
     def validate_signup(**data):
 
         required_fields = ['first_name', 'email', 'password',
-                'major_id', 'state_id', 'level_id', 'last_name']
+                'major_id', 'state_id', 'level_id', 'last_name', 
+                'gender']
 
         if not data:
             return "No data provided"
