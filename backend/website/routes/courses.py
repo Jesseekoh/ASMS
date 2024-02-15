@@ -15,16 +15,29 @@ def courses():
 @app_routes.route('/courses/student', methods=['GET'], strict_slashes=False)
 def my_courses():
     """return all course related to the student"""
-
-
     if 'id' in session:
         student = storage.get(Student, session['id'])
 
+        value = {}
         result = []
+        dep_courses = student.major.courses;
 
         for course in student.courses:
-            result.append(course.name)
+            value['name'] = course.name
+            value['status'] = 'O'
+            value['code'] = course.code
+            value['unit'] = 1
+            result.append(dict(value))
+
+        for course in dep_courses:
+            value['name'] = course.name
+            value['status'] = 'C'
+            value['code'] = course.code
+            value['unit'] = course.weight
+            result.append(dict(value))
+
         return jsonify(result)
+
 
     return redirect(url_for('login'))
 

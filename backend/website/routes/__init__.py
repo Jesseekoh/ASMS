@@ -7,3 +7,4 @@ from website.routes.courses import *
 from website.routes.announcement import *
 from website.routes.result import *
 from website.routes.settings import *
+from website.routes.biodata import *

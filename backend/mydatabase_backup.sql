@@ -38,6 +38,7 @@ CREATE TABLE `announcements` (
 
 LOCK TABLES `announcements` WRITE;
 /*!40000 ALTER TABLE `announcements` DISABLE KEYS */;
+INSERT INTO `announcements` VALUES ('Vice_Chancelor','All 100 level student should kindly assemble at the admission block by 2pm on Monday 24th March for you_examination number. please endevour to be there on time','51bc520f-4670-4ee9-bae6-02ec1dad11b3','2024-02-15 19:51:08','2024-02-15 19:57:07');
 /*!40000 ALTER TABLE `announcements` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,6 +51,8 @@ DROP TABLE IF EXISTS `courses`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `courses` (
   `name` varchar(128) NOT NULL,
+  `code` varchar(20) DEFAULT NULL,
+  `weight` int NOT NULL,
   `id` varchar(60) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -63,7 +66,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES ('Python Programming','2934e8b1-8628-4a87-a38a-6f00d6c24d31','2024-02-08 20:34:44','2024-02-08 20:34:44'),('Mathematics','4aa74d44-b19c-4023-aed9-87e2284591ac','2024-02-08 20:34:20','2024-02-08 20:34:20'),('Computer Hard-ware','7ffb7f7a-a13c-43f9-a1ff-e452ccf22cb8','2024-02-08 20:35:30','2024-02-08 20:35:30'),('Physics','9016d2db-ef21-491c-81cb-cf65d8e28ed6','2024-02-08 20:34:29','2024-02-08 20:34:29'),('Chemistry','e3c3bbf6-7704-4162-9448-06bad44e0159','2024-02-08 20:34:56','2024-02-08 20:34:56'),('Biology','e994c79e-ca7e-4f69-ae49-f9ca5140d6c1','2024-02-08 20:35:16','2024-02-08 20:35:16');
+INSERT INTO `courses` VALUES ('General Physics Practical 1','PHY107',1,'04f4c5d9-8e65-4d89-b921-2305046368c5','2024-02-15 18:40:45','2024-02-15 18:40:45'),('Introduction to Cyber Hygiene','CYB101',2,'40caa9a0-c159-4bdb-bd75-f925cedf460b','2024-02-15 18:26:09','2024-02-15 18:26:09'),('Descriptive Statistics','STA101',3,'4e176754-8d05-4793-b7ae-65826951ec73','2024-02-15 18:27:21','2024-02-15 18:27:21'),('Design Principle','DPN',1,'66c9ca98-beda-4234-b6df-33e2a7d1112b','2024-02-15 18:15:46','2024-02-15 18:15:46'),('Chemistry','CHM',2,'74f2406c-c23a-4fa3-8880-312e6a12b9c8','2024-02-15 18:15:53','2024-02-15 18:15:53'),('Introduction to Computer Science','CSC101',3,'755e0125-a340-4168-b9c6-0369a130439b','2024-02-15 18:16:04','2024-02-15 18:23:40'),('Microbiology','ARC101',3,'85d8d808-e6ba-4b35-bc88-0690b87d19af','2024-02-15 18:44:04','2024-02-15 18:44:04'),('Industrial Chemistry','ICH101',2,'8b27afa9-fa2b-4142-b255-f04334ee4b21','2024-02-15 18:44:38','2024-02-15 18:44:38'),('Photo Journalism','PHT101',2,'9e865bf3-6ccc-49c9-a180-2a3a10ca3f70','2024-02-15 18:45:40','2024-02-15 18:45:40'),('Communication in English','GST111',2,'a5bb7ab4-b78f-40c9-8fec-c85a8197f55d','2024-02-15 18:42:03','2024-02-15 18:42:03'),('General Mathematics 1','Mat83H',2,'b1e5e434-a77d-4f99-a3c9-96a58c502e4a','2024-02-15 18:16:13','2024-02-15 18:37:58'),('General Physics 1','PHY101',2,'c98eea29-724f-4e1c-9490-7df8c2337e7d','2024-02-15 18:15:58','2024-02-15 18:38:05'),('Architecture','MCB101',3,'e5d09dbf-1108-4d5c-8366-6f53d4535125','2024-02-15 18:42:56','2024-02-15 18:45:09'),('Fine Art','FNA10',3,'f9ad0834-1d86-4cb6-a26e-4ea470a36af2','2024-02-15 18:19:52','2024-02-15 18:19:52');
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,7 +173,7 @@ CREATE TABLE `major_courses` (
 
 LOCK TABLES `major_courses` WRITE;
 /*!40000 ALTER TABLE `major_courses` DISABLE KEYS */;
-INSERT INTO `major_courses` VALUES ('ef0ea08b-0122-4f82-91f5-cf4f7314e417','2934e8b1-8628-4a87-a38a-6f00d6c24d31'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','4aa74d44-b19c-4023-aed9-87e2284591ac'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','7ffb7f7a-a13c-43f9-a1ff-e452ccf22cb8'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','9016d2db-ef21-491c-81cb-cf65d8e28ed6'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','e3c3bbf6-7704-4162-9448-06bad44e0159');
+INSERT INTO `major_courses` VALUES ('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','04f4c5d9-8e65-4d89-b921-2305046368c5'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','04f4c5d9-8e65-4d89-b921-2305046368c5'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','40caa9a0-c159-4bdb-bd75-f925cedf460b'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','4e176754-8d05-4793-b7ae-65826951ec73'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','74f2406c-c23a-4fa3-8880-312e6a12b9c8'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','755e0125-a340-4168-b9c6-0369a130439b'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','a5bb7ab4-b78f-40c9-8fec-c85a8197f55d'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','a5bb7ab4-b78f-40c9-8fec-c85a8197f55d'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','b1e5e434-a77d-4f99-a3c9-96a58c502e4a'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','b1e5e434-a77d-4f99-a3c9-96a58c502e4a'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','c98eea29-724f-4e1c-9490-7df8c2337e7d'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','c98eea29-724f-4e1c-9490-7df8c2337e7d');
 /*!40000 ALTER TABLE `major_courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -342,6 +345,7 @@ CREATE TABLE `student_courses` (
 
 LOCK TABLES `student_courses` WRITE;
 /*!40000 ALTER TABLE `student_courses` DISABLE KEYS */;
+INSERT INTO `student_courses` VALUES ('d3a1d128-77f0-47c4-9794-39aafa346f39','f9ad0834-1d86-4cb6-a26e-4ea470a36af2');
 /*!40000 ALTER TABLE `student_courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -408,6 +412,7 @@ CREATE TABLE `students_announcement` (
 
 LOCK TABLES `students_announcement` WRITE;
 /*!40000 ALTER TABLE `students_announcement` DISABLE KEYS */;
+INSERT INTO `students_announcement` VALUES ('d3a1d128-77f0-47c4-9794-39aafa346f39','51bc520f-4670-4ee9-bae6-02ec1dad11b3');
 /*!40000 ALTER TABLE `students_announcement` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -446,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-15 16:33:50
+-- Dump completed on 2024-02-15 21:40:23

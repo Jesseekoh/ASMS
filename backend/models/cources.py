@@ -23,6 +23,8 @@ class Course(BaseModel, Base):
         __tablename__ = 'courses'
 
         name = Column(String(128), nullable=False)
+        code = Column(String(20), nullable=True)
+        weight = Column(Integer, nullable=False) 
         student = relationship("Student", secondary=student_cources,
                                 viewonly=False, backref='courses')
         results = relationship('Result', backref='courses', cascade='all, delete, delete-orphan')

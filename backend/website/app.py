@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from models import storage
 from models.student import Student
 from hashlib import md5
-from .utils import stringUtils, validate
+from .utils import stringUtils, validate, parse
 from website.routes import app_routes
 from website.routes import session
 import secrets
@@ -46,7 +46,7 @@ def login():
             if md5(password.encode()).hexdigest() == student.password:
                 session['id'] = student.id
                 session['SameSite'] = "None"
-                studentValue = formatStudent(student)
+                studentValue = parse.formatStudent(student)
                 studentValue['url'] = '/dashboard'
                 return jsonify(studentValue), 200
             else:
@@ -75,28 +75,10 @@ def signup():
 
         student = storage.get_student(Student, data['email'])
 
-        studentValue = formatStudent(student)
+        studentValue = parse.formatStudent(student)
         return jsonify(studentValue), 201
 
     return render_template('signup.html'), 200
-
-def formatStudent(student):
-    """format student object"""
-
-    studentValue = dict(student.to_dict())
-    studentValue['major'] = student.major.name
-    del studentValue['created_at']
-    del studentValue['updated_at']
-    del studentValue['major_id']
-    del studentValue['state_id']
-    del studentValue['__class__']
-    del studentValue['level_id']
-    del studentValue['id']
-    studentValue['level'] = student.levels.number
-    studentValue['gender'] = student.gender
-    studentValue['url'] = '/login'
-
-    return studentValue
 
 @app.route('/dashboard', strict_slashes=False)
 @cross_origin(supports_credentials=True)
@@ -105,7 +87,7 @@ def dashbord():
     if 'id' in session:
         student = storage.get(Student, session['id'])
         if student:
-            studentValue = formatStudent(student)
+            studentValue = parse.formatStudent(student)
             del studentValue['url']
             
             return jsonify(studentValue)

@@ -5,25 +5,23 @@ from models import storage
 from website.routes import app_routes
 from website.routes import session
 
-@app_routes.route('/announcements', methods=['GET'], strict_slashes=False)
-def announcement():
-    if 'id' in session:
-        return render_template('announcement.html')
-
-    return redirect(url_for('login'))
-
-@app_routes.route('/announcement/student', methods=['GET'], strict_slashes=False)
+@app_routes.route('/announcement', methods=['GET'], strict_slashes=False)
 def my_announcement():
     """return all announcement related to the student"""
 
     if 'id' in session:
-        student = storage.get(Student, session['id'])
-
         result = []
 
+        student = storage.get(Student, session['id'])
+
         for mesg in student.announcements:
-            result.append({'from': mesg.source, 'info': mesg.info})
+            date_in_words = mesg.created_at.strftime("%B %d, %Y")
+            result.append({
+                'from': mesg.source,
+                'info': mesg.info,
+                'date': date_in_words})
         return jsonify(result)
+
 
     return redirect(url_for('login'))
 

@@ -21,6 +21,29 @@ class StringUtils:
         return encrypted_password
 
 
+class Format:
+    """Class definition for Formating objects"""
+
+    @staticmethod
+    def formatStudent(student):
+        """format student object"""
+
+        studentValue = dict(student.to_dict())
+        studentValue['major'] = student.major.name
+        del studentValue['created_at']
+        del studentValue['updated_at']
+        del studentValue['major_id']
+        del studentValue['state_id']
+        del studentValue['__class__']
+        del studentValue['level_id']
+        del studentValue['id']
+        studentValue['level'] = student.levels.number
+        studentValue['gender'] = student.gender
+        studentValue['url'] = '/login'
+
+        return studentValue
+
+
 class Validate:
     """utility for validation"""
 
