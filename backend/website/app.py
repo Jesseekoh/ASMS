@@ -1,6 +1,6 @@
 #/usr/bin/python3
 from os import getenv
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from flask import Flask
 from flask import Flask, jsonify
 from flask import Flask, render_template, request, redirect, url_for
@@ -19,14 +19,17 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "*"}}, allow_headers=['Access-Control-Allow-Credentials'])
 
 
 @app.route('/', strict_slashes=False)
+@cross_origin(supports_credentials=True)
+
 def main():
     return render_template('index.html')
 
 @app.route('/login', methods=['GET', 'POST'], strict_slashes=False)
+@cross_origin(supports_credentials=True)
 def login():
     if request.method == 'POST':
         data = request.get_json()
@@ -41,7 +44,9 @@ def login():
             email  = data['email']
             if md5(password.encode()).hexdigest() == student.password:
                 session['id'] = student.id
-                return jsonify({'url': '/dashbord'}), 200
+                studentValue = formatStudent(student)
+                studentValue['url'] = '/dashboard'
+                return jsonify(studentValue), 200
             else:
                 return jsonify({'error': 'invalid email or password!!'})
         else:
@@ -50,6 +55,7 @@ def login():
     return render_template('login.html')
 
 @app.route('/logout', strict_slashes=False)
+@cross_origin(supports_credentials=True)
 def logout():
     if 'id' in session:
         del session['id']
@@ -86,13 +92,15 @@ def formatStudent(student):
 
     return studentValue
 
-@app.route('/dashbord', strict_slashes=False)
+@app.route('/dashboard', strict_slashes=False)
+@cross_origin(supports_credentials=True)
 def dashbord():
 
 
     if 'id' in session:
         student = storage.get(Student, session['id'])
         if student:
+            # return jsonify({"msg": "dashboard loaded"})
             return render_template('dashbord.html', student=student)
 
     return redirect(url_for('login'))
@@ -140,4 +148,4 @@ if __name__ == "__main__":
         host = '0.0.0.0'
     if not port:
         port = '5001'
-    app.run(host=host, port=port, threaded=True)
+    app.run(host=host, port=port, threaded=True, debug=True)
