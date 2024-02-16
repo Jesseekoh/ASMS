@@ -10,9 +10,9 @@ class Profile_picture(BaseModel, Base):
         __tablename__ = 'profile_pictures'
 
         student_id = Column(String(60), ForeignKey('students.id'), nullable=False)
-        img = Column(Text, nullable=False)
-        name = Column(Text, nullable=False)
-        mimetype = Column(Text, nullable=False)
+        img = Column(String(1025), nullable=False)
+        name = Column(String(50), nullable=False)
+        mimetype = Column(String(30), nullable=False)
     else:
         student_id = ""
         img = ""

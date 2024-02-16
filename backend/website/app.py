@@ -8,13 +8,14 @@ from models import storage
 from models.student import Student
 from hashlib import md5
 from .utils import stringUtils, validate, parse
+from .utils.utilities import CustomJSONProvider
 from website.routes import app_routes
 from website.routes import session
+from website.routes import UPLOAD_FOLDER
 import secrets
 
-UPLOAD_FOLDER = '/home/edward/ASMS/backend/website/static/uploads'
-
 app = Flask(__name__)
+#app.json =  CustomJSONProvider(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'
 app.secret_key = secrets.token_hex(16) #This will be changed later

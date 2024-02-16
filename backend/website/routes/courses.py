@@ -5,14 +5,8 @@ from models import storage
 from website.routes import app_routes
 from website.routes import session
 
+
 @app_routes.route('/courses', methods=['GET'], strict_slashes=False)
-def courses():
-    if 'id' in session:
-        return render_template('course.html')
-
-    return redirect(url_for('login'))
-
-@app_routes.route('/courses/student', methods=['GET'], strict_slashes=False)
 def my_courses():
     """return all course related to the student"""
     if 'id' in session:

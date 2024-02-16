@@ -1,4 +1,15 @@
 import hashlib
+from models.cources import Course
+from flask.json.provider import JSONProvider
+import json    
+    
+class CustomJSONProvider(JSONProvider):
+    
+    def dumps(self, obj, **kwargs):
+        return json.dumps(obj, **kwargs, cls=Course)
+    
+    def loads(self, s: str | bytes, **kwargs):
+        return json.loads(s, **kwargs)
 
 class StringUtils:
     """String manipulation Class"""
@@ -28,7 +39,7 @@ class Format:
     def formatStudent(student):
         """format student object"""
 
-        studentValue = dict(student.to_dict())
+        studentValue = student.to_dict()
         studentValue['major'] = student.major.name
         del studentValue['created_at']
         del studentValue['updated_at']
