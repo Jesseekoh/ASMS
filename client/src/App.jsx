@@ -11,11 +11,16 @@ import Announcements from './pages/Announcements'
 import Courses from './pages/Courses'
 import Login from './pages/Login'
 import RequireAuth from './components/RequireAuth'
+import Results from './pages/Results'
 
 const queryClient = new QueryClient()
 
 function App() {
   const router = createBrowserRouter([
+    {
+      path: '*',
+      element: <ErrorPage />,
+    },
     {
       element: <Layout />,
 
@@ -61,6 +66,10 @@ function App() {
               <Announcements />
             </RequireAuth>
           ),
+        },
+        {
+          path: '/results',
+          element: <Results />,
         },
       ],
     },
