@@ -1,0 +1,7 @@
+ASMS_MYSQL_USER=asms_dev ASMS_MYSQL_PWD=asms_dev_pwd ASMS_MYSQL_HOST=localhost ASMS_MYSQL_DB=asms_dev_db ASMS_TYPE_STORAGE=db ASMS_API_HOST=0.0.0.0 ASMS_API_PORT=5000 python3 -m website.app
+
+
+
+For Command Line:
+
+ASMS_MYSQL_USER=asms_dev ASMS_MYSQL_PWD=asms_dev_pwd ASMS_MYSQL_HOST=localhost ASMS_MYSQL_DB=asms_dev_db ASMS_TYPE_STORAGE=db ./console

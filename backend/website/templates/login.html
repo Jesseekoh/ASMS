@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>ASMS - login</title>
+</head>
+<body>
+	<form>
+		<label for="password">email:</label><br>
+		<input type="text" id="email"><br><br>
+		<label for="password">password:</label><br>
+		<input type="password" id="password"><br><br>
+		<button type="submit" id="submit">Login</button><br>
+	</form>
+<script>
+$('form').submit(function(event) {
+	
+	event.preventDefault()
+
+	const data = {
+		"email": $('#email').val(),
+                "password": $('#password').val()
+        }
+	
+	$.ajax({
+    		url: '/login',
+    		method: 'POST',
+    		contentType: 'application/json',
+    		data: JSON.stringify(data),
+    		success: function(response) {
+        		if (response.error) {
+            			console.log(response.error);
+        		} else {
+
+            			window.location.href = response.url;
+				console.log(response.url);
+        		}
+    		},
+    		error: function(xhr, status, error) {
+        		console.log('Error:', error);
+    		}
+	});
+
+})
+
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>ASMS - login</title>
+</head>
+<body>
+	<form>
+		<label for="firstname">first name:</label><br>
+		<input type="text" id="firstname" name="username"><br>
+    		<br>
+		<label for="password">last name:</label><br>
+		<input type="text" id="lastname"><br>
+    		<br>
+		<label for="password">major_id:</label><br>
+		<input type="text" id="dep_id"><br>
+		<br>
+		<label for="password">state_id:</label><br>
+		<input type="text" id="state_id"><br>
+		<br>
+		<label for="password">level:</label><br>
+		<input type="text" id="level"><br>
+		<br>
+		<label for="gender">Gender:</label><br>
+		<input type="text" id="gender"><br>
+		<br>
+		<label for="password">password:</label><br>
+		<input type="password" id="password"><br>
+		<br>
+		<label for="password">email:</label><br>
+		<input type="text" id="email"><br>
+		<button type="submit" id="submit">Signup</button><br>
+</form>
+<script>
+$('form').submit(function(event) {
+
+        event.preventDefault()
+
+        const data = {
+                "first_name": $('#firstname').val(),
+                "last_name": $('#lastname').val(),
+                "major_id": $('#dep_id').val(),
+                "state_id": $('#state_id').val(),
+                "level_id": $('#level').val(),
+                "gender": $('#gender').val(),
+                "email": $('#email').val(),
+                "password": $('#password').val(),
+        }
+
+        $.ajax({
+            url: '/signup',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            success: function(response) {
+                // Handle the response from the server
+			if (response.error) {
+                		console.log(response.error);
+			} else {
+
+				window.location.href = response.url;
+			}
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error('Error:', error, xhr);
+            }
+        });
+
+});
+</script>
+
+</body>
+</html>

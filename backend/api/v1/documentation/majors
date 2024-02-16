@@ -1,0 +1,13 @@
+route: /api/v1/majors
+
+methods:
+
+GET: Return all majors in the database
+
+json-data:
+
+[
+	{id: major_name}, 
+	{..}, 
+	...
+]
