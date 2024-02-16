@@ -13,7 +13,9 @@ export const getSessionToken = () => {
 
 // fetch info to display in the dashboard route
 export async function fetchDashboardDetails() {
-  const response = await fetch('http://localhost:5000/dashboard', {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL
+  // console.log(baseUrl)
+  const response = await fetch(baseUrl + '/dashboard', {
     credentials: 'include',
   })
   const json = await response.json()

@@ -16,6 +16,7 @@ const RegisterForm = () => {
   const [formPassword, setFormPassword] = useState('')
   const [formConfirmPassword, setFormConfirmPassword] = useState('')
 
+  const baseApiUrl = import.meta.env.VITE_API_BASE_URL
   const navigate = useNavigate()
   // queries
   const {
