@@ -23,7 +23,6 @@ def bioData():
         dep_courses = student.major.courses
         
         for course in student.courses:
-            print(course)
             optionalCourseNo += 1
 
 
@@ -39,6 +38,7 @@ def bioData():
 
         del studentData['url']
         del studentData['profile_pic']
+        del studentData['courses']
 
         return jsonify(studentData)
 
