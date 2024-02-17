@@ -32,7 +32,7 @@ def bioData():
         studentData = parse.formatStudent(student)
 
         studentData['state'] = student.state.name
-        studentData['profileImage'] = path
+        #studentData['profileImage'] = path
         studentData['compulsoryCourses'] = compulsoryCourseNo
         studentData['optionalCourses'] = optionalCourseNo
 
