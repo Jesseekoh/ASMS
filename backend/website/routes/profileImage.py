@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-from flask import redirect
+from flask import redirect, url_for
 from flask import send_from_directory
 from models.student import Student
+from models import storage
 from website.routes import app_routes
 from website.routes import session
-from routes import default_img, default_name
+from website.routes import UPLOAD_FOLDER
+from website.routes import default_img, default_name
 
 @app_routes.route('/profileImage', methods=['GET'], strict_slashes=False)
 def download_image():
@@ -14,12 +16,12 @@ def download_image():
         student = storage.get(Student, session['id'])
 
         if student.profile_pic:
-            path = student.profile_pic.img
-            filename = student.profile_pic.name
+            path = student.profile_pic[0].img
+            filename = student.profile_pic[0].name
         else:
             path = default_image
-            name = default_name
+            filename = default_name
 
-        return send_from_directory(path, filename)
+        return send_from_directory(UPLOAD_FOLDER, filename)
 
     return redirect(url_for('login'))
