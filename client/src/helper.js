@@ -1,3 +1,4 @@
+const baseUrl = import.meta.env.VITE_API_BASE_URL
 // Token session storage
 // set usertoken to session storage
 export const setSessionToken = (userToken) => {
@@ -12,12 +13,21 @@ export const getSessionToken = () => {
 }
 
 // fetch info to display in the dashboard route
-export async function fetchDashboardDetails() {
-  const baseUrl = import.meta.env.VITE_API_BASE_URL
+export const fetchDashboardDetails = async () => {
   // console.log(baseUrl)
   const response = await fetch(baseUrl + '/dashboard', {
     credentials: 'include',
   })
+  const json = await response.json()
+  return json
+}
+
+// fetch info to display in the biodata route
+export const fetchBiodata = async () => {
+  const response = await fetch(baseUrl + 'biodata', {
+    credentials: 'include',
+  })
+
   const json = await response.json()
   return json
 }

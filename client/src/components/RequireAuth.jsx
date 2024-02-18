@@ -11,7 +11,6 @@ const RequireAuth = ({ children }) => {
   let location = useLocation()
 
   if (token) {
-    console.log(token)
     setUsername(token.first_name)
     setToken(token.student_id)
   }

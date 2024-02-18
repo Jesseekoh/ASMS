@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchDashboardDetails } from '../helper'
+import { fetchBiodata } from '../helper'
 
 const Biodata = () => {
   // const queryClient = useQueryClient()
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['dashboard-info'],
-    queryFn: fetchDashboardDetails,
+    queryKey: ['biodata'],
+    queryFn: fetchBiodata,
   })
 
   if (isLoading) {
@@ -24,19 +24,23 @@ const Biodata = () => {
     )
   }
 
-  const { first_name, email, last_name, gender, major, level } = data
+  const {
+    first_name,
+    email,
+    last_name,
+    gender,
+    major,
+    level,
+    optionalCourses,
+    state,
+    compulsoryCourses,
+    profileImage,
+  } = data
   return (
     <section className="dashboard mt-12 bg-white p-4 rounded">
       <h3 className="text-3xl font-bold">Biodata</h3>
       <div className="student-info">
         <h4>Personal details</h4>
-        {isError && (
-          <p>
-            An error has occurred could not fetch details: {isError.message}
-          </p>
-        )}
-
-        {isLoading && <p>Loading...</p>}
 
         <div className="dashboard-info col-span-2">
           {isLoading && <p>is loading</p>}
@@ -53,6 +57,10 @@ const Biodata = () => {
                 <p className="font-bold">{gender}</p>
               </div>
               <div className="row grid grid-cols-2 gap-6 items-center mb-5">
+                <label className="font-semibold">State:</label>
+                <p className="font-bold">{state}</p>
+              </div>
+              <div className="row grid grid-cols-2 gap-6 items-center mb-5">
                 <label className="font-semibold">Program of Study:</label>
                 <p className="font-bold">{major}</p>
               </div>
@@ -61,12 +69,28 @@ const Biodata = () => {
                 <p className="font-bold">{level}</p>
               </div>
               <div className="row grid grid-cols-2 gap-6 items-center mb-5">
+                <label className="font-semibold">Compulsory Courses:</label>
+                <p className="font-bold">{compulsoryCourses}</p>
+              </div>
+              <div className="row grid grid-cols-2 gap-6 items-center mb-5">
+                <label className="font-semibold">Optional Courses:</label>
+                <p className="font-bold">{optionalCourses}</p>
+              </div>
+              <div className="row grid grid-cols-2 gap-6 items-center mb-5">
                 <label className="font-semibold">Email:</label>
                 <p className="font-bold">{email}</p>
               </div>
             </>
           )}
         </div>
+        <img
+          className="col-span-1 "
+          width={100}
+          src={
+            '/home/jesseekoh-ordan/Code/projects/ASMS/client/public/blur-1853262_1.jpg'
+          }
+          alt=""
+        />
       </div>
     </section>
   )

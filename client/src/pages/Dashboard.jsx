@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 import { fetchDashboardDetails } from '../helper'
 
@@ -12,10 +10,6 @@ const Dashboard = () => {
     queryKey: ['dashboard-info'],
     queryFn: fetchDashboardDetails,
   })
-  
-  useEffect(() => {
-    // fetchDashboardDetails()
-  }, [])
 
   if (isLoading) {
     return (
