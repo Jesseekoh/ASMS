@@ -15,14 +15,14 @@ ALLOWED_EXTENSIONS = {'txt', 'png', 'jpg', 'jpeg', 'gif'}
 def allowed_img(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
-
+"""
 @app_routes.route('/settings', methods=['GET'], strict_slashes=False)
 def settings():
     if 'id' in session:
         return render_template('settings.html')
 
     return redirect(url_for('login'))
-
+"""
 @app_routes.route('/settings/upload', methods=['POST'], strict_slashes=False)
 def upload():
     """upload file return the path to the uploaded file"""
@@ -59,8 +59,7 @@ def upload():
             existProfile_pic.save()
             
             return jsonify({
-                'message': 'Profile picture updated successfully!',
-                'path': path
+                'message': 'Profile picture updated successfully!'
                 })
 
         data['student_id'] = session['id']
@@ -68,8 +67,7 @@ def upload():
         image.save()
 
         return jsonify({
-            'message': 'Image uploaded successfully!',
-            'path': path
+            'message': 'Image uploaded successfully!'
             })
 
     return redirect(url_for('login'))

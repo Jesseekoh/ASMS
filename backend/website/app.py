@@ -95,7 +95,7 @@ def dashbord():
             path = student.profile_pic[0].img
 
         #del studentValue['profile_pic']
-        studentValue['profilePicture'] = path
+        studentValue['profileImageUrl'] = '/profileImage'
             
         return jsonify(studentValue)
 
