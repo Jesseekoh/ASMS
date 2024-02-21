@@ -31,7 +31,7 @@ const Dashboard = () => {
   return (
     <>
       <section className="dashboard mt-12 bg-white p-4 rounded">
-        <h2 className="text-3xl font-bold pt-">Dashboard</h2>
+        <h2 className="text-3xl font-bold pb-10">Dashboard</h2>
         <div className="dashboard-contents container w-full rounded grid grid-cols-3">
           <div className="dashboard-info col-span-2">
             {isLoading && <p>is loading</p>}
@@ -64,8 +64,8 @@ const Dashboard = () => {
           </div>
           <img
             className="col-span-1 "
-            width={100}
-            src={`https://robohash.org/${student_id}?100x100`}
+            width={200}
+            src={`http://localhost:5000/profileImage`}
             alt=""
           />
         </div>

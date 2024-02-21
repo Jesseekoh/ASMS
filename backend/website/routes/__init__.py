@@ -3,8 +3,8 @@ from flask import session
 
 app_routes = Blueprint('app_routes', __name__)
 
-UPLOAD_FOLDER = '/home/edward/ASMS/backend/website/static/uploads'
-default_img = '/home/edward/ASMS/backend/website/static/uploads/default_profile_1.png'
+UPLOAD_FOLDER = '/home/jesseekoh-ordan/Code/projects/ASMS/backend/website/static/uploads'
+default_img = '/home/jesseekoh-ordan/Code/projects/ASMS/backend/website/static/uploads/default_profile_1.png'
 default_name = 'default_profile_1.png'
 
 from website.routes.courses import *

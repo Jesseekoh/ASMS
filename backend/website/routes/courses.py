@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from flask import render_template, url_for, redirect, jsonify
+from flask_cors import cross_origin
 from models.student import Student
 from models import storage
 from website.routes import app_routes
@@ -7,6 +8,7 @@ from website.routes import session
 
 
 @app_routes.route('/courses', methods=['GET'], strict_slashes=False)
+@cross_origin(supports_credentials=True)
 def my_courses():
     """return all course related to the student"""
     if 'id' in session:

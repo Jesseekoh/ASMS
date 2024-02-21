@@ -7,9 +7,10 @@ import {
   TableCellsIcon,
   BanknotesIcon,
 } from '@heroicons/react/24/solid'
+import './SideNav.css'
 const SideNav = () => {
   return (
-    <div className="sidenav h-full fixed w-max bg-yellow-500 overflow-y-auto">
+    <div className="sidenav  absolute h-[calc(h-full -  72px)]  w-max bg-yellow-500 overflow-y-auto">
       <ul className="flex flex-col">
         <li className="hover:bg-yellow-400">
           <Link to={'/dashboard'} className="flex items-center gap-3 px-4 py-4">

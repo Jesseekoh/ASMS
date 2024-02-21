@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchBiodata } from '../helper'
 
 const Biodata = () => {
-  // const queryClient = useQueryClient()
+  const API_URL = import.meta.env.VITE_API_BASE_URL
   const { data, isLoading, isError } = useQuery({
     queryKey: ['biodata'],
     queryFn: fetchBiodata,
@@ -34,11 +34,13 @@ const Biodata = () => {
     optionalCourses,
     state,
     compulsoryCourses,
-    profileImage,
+    profileImageUrl,
   } = data
+
+  console.log(data)
   return (
     <section className="dashboard mt-12 bg-white p-4 rounded">
-      <h3 className="text-3xl font-bold">Biodata</h3>
+      <h3 className="text-3xl font-bold pb-10">Biodata</h3>
       <div className="student-info">
         <h4>Personal details</h4>
 
@@ -86,9 +88,7 @@ const Biodata = () => {
         <img
           className="col-span-1 "
           width={100}
-          src={
-            '/home/jesseekoh-ordan/Code/projects/ASMS/client/public/blur-1853262_1.jpg'
-          }
+          src={API_URL + profileImageUrl}
           alt=""
         />
       </div>
