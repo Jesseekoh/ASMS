@@ -13,6 +13,7 @@ class Semister(BaseModel, Base):
 
         number = Column(Integer, nullable=False)
         results = relationship('Result', backref='semisters', cascade='all, delete, delete-orphan')
+        fees = relationship('Fees', backref='semister', cascade='all, delete, delete-orphan')
     else:
         number = ""
 

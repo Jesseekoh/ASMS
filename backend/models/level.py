@@ -12,8 +12,9 @@ class Level(BaseModel, Base):
         __tablename__ = 'levels'
 
         number = Column(Integer, nullable=False)
-        result = relationship('Result', backref='levels', viewonly=False)
-        student = relationship('Student', backref='levels', viewonly=False)
+        result = relationship('Result', backref='levels',  cascade='all, delete, delete-orphan', viewonly=False)
+        student = relationship('Student', backref='levels',  cascade='all, delete, delete-orphan', viewonly=False)
+        fees = relationship('Fees', backref='levels', cascade='all, delete, delete-orphan')
     else:
         level = ""
 
