@@ -5,9 +5,9 @@ const Login = () => {
   return (
     <>
       <Navbar />
-      {/* <div className="h-full grid place-items-center"> */}
-      <LoginForm />
-      {/* </div> */}
+      <div className="h-full grid place-items-center">
+        <LoginForm />
+      </div>
     </>
   )
 }
