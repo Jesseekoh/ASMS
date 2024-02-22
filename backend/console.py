@@ -123,6 +123,10 @@ class ASMSCommand(cmd.Cmd):
                 print([str(obj) for obj in cls.student])
             elif args[0] == 'Result':
                 print([str(obj) for obj in cls.results])
+            elif args[0] == 'Bill':
+                print([str(obj) for obj in cls.billings])
+            elif args[0] == 'OtherBill':
+                print([print(obj, end=", ") for obj in cls.others])
         except AttributeError:
             print(cls.__class__.__name__, 'object has no relationship with the specified object!')
 
