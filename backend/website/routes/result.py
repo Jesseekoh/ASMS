@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 from flask import render_template, url_for, redirect, jsonify
+from flask_cors import cross_origin
 from models.student import Student
 from models.level import Level
 from models.semister import Semister
@@ -8,6 +9,7 @@ from website.routes import app_routes
 from website.routes import session
 
 @app_routes.route('/result', methods=['GET'], strict_slashes=False)
+@cross_origin(supports_credentials=True)
 def result():
     if 'id' in session:
         return render_template('result.html')
