@@ -78,7 +78,11 @@ function App() {
         },
         {
           path: '/results',
-          element: <Results />,
+          element: (
+            <RequireAuth>
+              <Results />
+            </RequireAuth>
+          ),
         },
       ],
     },
