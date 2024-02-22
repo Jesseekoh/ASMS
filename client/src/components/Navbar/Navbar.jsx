@@ -1,18 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useAppStore } from '../../../store'
-import SideNav from '../SideNav/SideNav'
-// import { useNavigate } from 'react-router-dom'
-// import { redirect } from 'react-router-dom'
 
 const Navbar = () => {
-  const { username, setUsername } = useAppStore((state) => ({
+  const { username } = useAppStore((state) => ({
     username: state.username,
     setUsername: state.setUsername,
   }))
   console.log(username)
 
   return (
-    <header className="bg-white relative h-full top-0 shadow-2xl">
+    <header className="bg-white relative h-full top-0 shadow-md">
       <nav className="nav">
         <div className="container w-full max-w-[100%] px-4 py-3 flex flex-col lg:flex-row items-baseline justify-between">
           <Link to={'/'}>
@@ -41,7 +38,6 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <SideNav />
     </header>
   )
 }
