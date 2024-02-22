@@ -44,7 +44,6 @@ const Courses = () => {
       </section>
     )
   }
-  console.log(data)
   return (
     <section className="courses mt-8 bg-white p-4 rounded">
       <h2 className="text-3xl font-bold mb-10">Registered Courses</h2>
@@ -70,25 +69,29 @@ const Courses = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((course, index) => (
-              <tr key={data.code}>
-                <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
-                  {index + 1}
-                </td>
-                <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
-                  {course.name}
-                </td>
-                <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
-                  {course.code}
-                </td>
-                <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
-                  {course.unit}
-                </td>
-                <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
-                  {course.status}
-                </td>
-              </tr>
-            ))}
+            {data && data.length != 0 ? (
+              data.map((course, index) => (
+                <tr key={data.code}>
+                  <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
+                    {index + 1}
+                  </td>
+                  <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
+                    {course.name}
+                  </td>
+                  <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
+                    {course.code}
+                  </td>
+                  <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
+                    {course.unit}
+                  </td>
+                  <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">
+                    {course.status}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <p className="text-center pt-8">There are no courses....</p>
+            )}
           </tbody>
         </table>
       </div>
