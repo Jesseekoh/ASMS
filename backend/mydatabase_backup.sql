@@ -43,6 +43,33 @@ INSERT INTO `announcements` VALUES ('Vice_Chancelor','All 100 level student shou
 UNLOCK TABLES;
 
 --
+-- Table structure for table `bills`
+--
+
+DROP TABLE IF EXISTS `bills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bills` (
+  `name` varchar(50) NOT NULL,
+  `amount` int NOT NULL,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bills`
+--
+
+LOCK TABLES `bills` WRITE;
+/*!40000 ALTER TABLE `bills` DISABLE KEYS */;
+INSERT INTO `bills` VALUES ('Sanitation',5000,'23cd607c-214d-4b16-b100-d0e562f3b04b','2024-02-20 11:38:34','2024-02-20 11:38:34'),('Text Books',25000,'42cc0844-8b6f-41e1-8f7e-690af732095f','2024-02-20 12:04:09','2024-02-20 12:04:09'),('Work Space',11500,'66f57ddc-4587-4d09-894e-6a7489f4da94','2024-02-20 11:33:25','2024-02-20 11:33:25'),('Hostel',30000,'b5a4bc31-6f71-4f6c-a58b-ee063ea12c74','2024-02-20 11:35:43','2024-02-20 11:35:43'),('Text Books',27000,'f5159bbc-7557-4e2f-b251-279c5ce01e6e','2024-02-20 12:08:53','2024-02-20 12:08:53'),('Lessons Fee',40000,'fc5b4f2f-813b-4726-a3b2-898af69a7584','2024-02-20 11:39:33','2024-02-20 11:39:33');
+/*!40000 ALTER TABLE `bills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `courses`
 --
 
@@ -104,14 +131,21 @@ DROP TABLE IF EXISTS `fees`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `fees` (
-  `student_id` varchar(70) NOT NULL,
-  `amount` int NOT NULL,
+  `student_id` varchar(60) NOT NULL,
+  `status` tinyint(1) DEFAULT NULL,
+  `level_id` varchar(60) NOT NULL,
+  `semister_id` varchar(60) NOT NULL,
+  `amount_paid` int NOT NULL,
   `id` varchar(60) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`),
-  CONSTRAINT `fees_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`)
+  KEY `level_id` (`level_id`),
+  KEY `semister_id` (`semister_id`),
+  CONSTRAINT `fees_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
+  CONSTRAINT `fees_ibfk_2` FOREIGN KEY (`level_id`) REFERENCES `levels` (`id`),
+  CONSTRAINT `fees_ibfk_3` FOREIGN KEY (`semister_id`) REFERENCES `semisters` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -122,6 +156,59 @@ CREATE TABLE `fees` (
 LOCK TABLES `fees` WRITE;
 /*!40000 ALTER TABLE `fees` DISABLE KEYS */;
 /*!40000 ALTER TABLE `fees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fees_bills`
+--
+
+DROP TABLE IF EXISTS `fees_bills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `fees_bills` (
+  `fee_id` varchar(60) NOT NULL,
+  `bill_id` varchar(60) NOT NULL,
+  PRIMARY KEY (`fee_id`,`bill_id`),
+  KEY `bill_id` (`bill_id`),
+  CONSTRAINT `fees_bills_ibfk_1` FOREIGN KEY (`fee_id`) REFERENCES `fees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fees_bills_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fees_bills`
+--
+
+LOCK TABLES `fees_bills` WRITE;
+/*!40000 ALTER TABLE `fees_bills` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fees_bills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `level_bill`
+--
+
+DROP TABLE IF EXISTS `level_bill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `level_bill` (
+  `level_id` varchar(60) NOT NULL,
+  `bill_id` varchar(60) NOT NULL,
+  PRIMARY KEY (`level_id`,`bill_id`),
+  KEY `bill_id` (`bill_id`),
+  CONSTRAINT `level_bill_ibfk_1` FOREIGN KEY (`level_id`) REFERENCES `levels` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `level_bill_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `level_bill`
+--
+
+LOCK TABLES `level_bill` WRITE;
+/*!40000 ALTER TABLE `level_bill` DISABLE KEYS */;
+INSERT INTO `level_bill` VALUES ('b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','23cd607c-214d-4b16-b100-d0e562f3b04b'),('b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','b5a4bc31-6f71-4f6c-a58b-ee063ea12c74'),('b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','fc5b4f2f-813b-4726-a3b2-898af69a7584');
+/*!40000 ALTER TABLE `level_bill` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -148,6 +235,33 @@ LOCK TABLES `levels` WRITE;
 /*!40000 ALTER TABLE `levels` DISABLE KEYS */;
 INSERT INTO `levels` VALUES (400,'2edb76ee-a467-43ae-ab28-a8264d8637b2','2024-02-15 15:15:13','2024-02-15 15:15:13'),(300,'4795b820-140d-4d0a-9821-9bbfc01c5ef0','2024-02-15 15:15:10','2024-02-15 15:15:10'),(200,'744eef4f-b890-4b4e-8263-12f454449500','2024-02-15 15:15:06','2024-02-15 15:15:06'),(100,'b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','2024-02-15 15:15:02','2024-02-15 15:15:02');
 /*!40000 ALTER TABLE `levels` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `major_bill`
+--
+
+DROP TABLE IF EXISTS `major_bill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `major_bill` (
+  `major_id` varchar(60) NOT NULL,
+  `bill_id` varchar(60) NOT NULL,
+  PRIMARY KEY (`major_id`,`bill_id`),
+  KEY `bill_id` (`bill_id`),
+  CONSTRAINT `major_bill_ibfk_1` FOREIGN KEY (`major_id`) REFERENCES `majors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `major_bill_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `major_bill`
+--
+
+LOCK TABLES `major_bill` WRITE;
+/*!40000 ALTER TABLE `major_bill` DISABLE KEYS */;
+INSERT INTO `major_bill` VALUES ('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','42cc0844-8b6f-41e1-8f7e-690af732095f'),('ebf746e3-077b-4cb3-a3e9-21dfb198fb6f','66f57ddc-4587-4d09-894e-6a7489f4da94'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','66f57ddc-4587-4d09-894e-6a7489f4da94'),('ef0ea08b-0122-4f82-91f5-cf4f7314e417','f5159bbc-7557-4e2f-b251-279c5ce01e6e');
+/*!40000 ALTER TABLE `major_bill` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -207,6 +321,59 @@ INSERT INTO `majors` VALUES ('Biomedical Engineering','c4be970d-0429-430c-9c2d-4
 UNLOCK TABLES;
 
 --
+-- Table structure for table `other_fees`
+--
+
+DROP TABLE IF EXISTS `other_fees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `other_fees` (
+  `fees_id` varchar(60) NOT NULL,
+  `bill_id` varchar(60) NOT NULL,
+  PRIMARY KEY (`fees_id`,`bill_id`),
+  KEY `bill_id` (`bill_id`),
+  CONSTRAINT `other_fees_ibfk_1` FOREIGN KEY (`fees_id`) REFERENCES `fees` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `other_fees_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `otherbills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `other_fees`
+--
+
+LOCK TABLES `other_fees` WRITE;
+/*!40000 ALTER TABLE `other_fees` DISABLE KEYS */;
+/*!40000 ALTER TABLE `other_fees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `otherbills`
+--
+
+DROP TABLE IF EXISTS `otherbills`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `otherbills` (
+  `name` varchar(50) NOT NULL,
+  `amount` int NOT NULL,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `otherbills`
+--
+
+LOCK TABLES `otherbills` WRITE;
+/*!40000 ALTER TABLE `otherbills` DISABLE KEYS */;
+INSERT INTO `otherbills` VALUES ('Distroyed Laptop',10000,'40da47cf-192c-4db6-8b42-35b3503b3984','2024-02-20 20:36:20','2024-02-20 20:36:20'),('Distroyed Chairs',4000,'f8dd7222-ccd2-4182-bd0f-2015cf547728','2024-02-20 20:37:03','2024-02-20 20:37:03');
+/*!40000 ALTER TABLE `otherbills` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `profile_pictures`
 --
 
@@ -215,9 +382,9 @@ DROP TABLE IF EXISTS `profile_pictures`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `profile_pictures` (
   `student_id` varchar(60) NOT NULL,
-  `img` text NOT NULL,
-  `name` text NOT NULL,
-  `mimetype` text NOT NULL,
+  `img` varchar(1025) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `mimetype` varchar(30) NOT NULL,
   `id` varchar(60) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
@@ -233,6 +400,7 @@ CREATE TABLE `profile_pictures` (
 
 LOCK TABLES `profile_pictures` WRITE;
 /*!40000 ALTER TABLE `profile_pictures` DISABLE KEYS */;
+INSERT INTO `profile_pictures` VALUES ('d3a1d128-77f0-47c4-9794-39aafa346f39','/home/edward/ASMS/backend/website/static/uploads/default_profile_3.png','default_profile_3.png','image/png','1f1cd5dc-e004-46cf-ab86-5f04cd83930e','2024-02-16 13:24:07','2024-02-20 08:34:31');
 /*!40000 ALTER TABLE `profile_pictures` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,6 +491,33 @@ INSERT INTO `states` VALUES ('Lagos','27df4456-62d3-4dd5-bcc1-bcdb686c9271','202
 UNLOCK TABLES;
 
 --
+-- Table structure for table `student_bill`
+--
+
+DROP TABLE IF EXISTS `student_bill`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `student_bill` (
+  `student_id` varchar(60) NOT NULL,
+  `bill_id` varchar(60) NOT NULL,
+  PRIMARY KEY (`student_id`,`bill_id`),
+  KEY `bill_id` (`bill_id`),
+  CONSTRAINT `student_bill_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `student_bill_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `otherbills` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `student_bill`
+--
+
+LOCK TABLES `student_bill` WRITE;
+/*!40000 ALTER TABLE `student_bill` DISABLE KEYS */;
+INSERT INTO `student_bill` VALUES ('d3a1d128-77f0-47c4-9794-39aafa346f39','40da47cf-192c-4db6-8b42-35b3503b3984'),('d3a1d128-77f0-47c4-9794-39aafa346f39','f8dd7222-ccd2-4182-bd0f-2015cf547728');
+/*!40000 ALTER TABLE `student_bill` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `student_courses`
 --
 
@@ -385,7 +580,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES ('Edward','Odey','39AAFA346F39','edwardodey00@gmail.com','Male','49ad23d1ec9fa4bd8d77d02681df5cfa','b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','ef0ea08b-0122-4f82-91f5-cf4f7314e417','f1b972ac-8f2a-478b-b926-40ca47bfa9a4','d3a1d128-77f0-47c4-9794-39aafa346f39','2024-02-15 15:15:38','2024-02-15 15:15:38');
+INSERT INTO `students` VALUES ('Mark','Iyaji','D9A4B486443D','markiyaji@gmail.com','Male','49ad23d1ec9fa4bd8d77d02681df5cfa','b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','1aad51b0-301b-4f8d-bd2f-fe9bd2d34625','f1b972ac-8f2a-478b-b926-40ca47bfa9a4','417bf9b8-b345-4d73-af4d-d9a4b486443d','2024-02-17 17:19:57','2024-02-17 17:19:57'),('Edward','Odey','39AAFA346F39','edwardodey00@gmail.com','Male','3f45f36f0dc58898eff207d1e3b41ce2','b7c47cb8-966f-4b2b-8cc9-6f760d20a7ff','ef0ea08b-0122-4f82-91f5-cf4f7314e417','f1b972ac-8f2a-478b-b926-40ca47bfa9a4','d3a1d128-77f0-47c4-9794-39aafa346f39','2024-02-15 15:15:38','2024-02-17 18:21:07');
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -451,4 +646,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-15 21:40:23
+-- Dump completed on 2024-02-22 16:27:22

@@ -16,14 +16,17 @@ from models.student import Student
 from models.state import State
 from models.result import Result
 from models.level import Level
+from models.billing import Bill
 from models.semister import Semister
+from models.others_bills import OtherBill
 from models.profile_pic import Profile_picture
 import shlex  # for splitting the line along spaces except in double quotes
 classes = {"Student": Student, "Major": Major, "Faculty": Faculty,
         "Profile_picture": Profile_picture, "Fees": Fees, "Course": Course,
-        "Announcement": Announcement, "State": State, "Level": Level, "Semister": Semister}
+        "Announcement": Announcement, "State": State, "Level": Level,
+        "Semister": Semister, "Bill": Bill, "OtherBill": OtherBill}
 
-relationship = ['Student', 'Course', 'Major']
+relationship = ['Student', 'Course', 'Major', 'Level', 'Fees']
 
 class ASMSCommand(cmd.Cmd):
     """ HBNH console """
@@ -95,6 +98,10 @@ class ASMSCommand(cmd.Cmd):
                         cls.student.append(obj)
                     elif args[0] == 'Announcement':
                         cls.announcements.append(obj)
+                    elif args[0] == 'Bill':
+                        cls.billings.append(obj)
+                    elif args[0] == 'OtherBill':
+                        cls.others.append(obj)
                     storage.save()
                     print('added:', obj.id)
                 else:
@@ -116,6 +123,10 @@ class ASMSCommand(cmd.Cmd):
                 print([str(obj) for obj in cls.student])
             elif args[0] == 'Result':
                 print([str(obj) for obj in cls.results])
+            elif args[0] == 'Bill':
+                print([str(obj) for obj in cls.billings])
+            elif args[0] == 'OtherBill':
+                print([print(obj, end=", ") for obj in cls.others])
         except AttributeError:
             print(cls.__class__.__name__, 'object has no relationship with the specified object!')
 

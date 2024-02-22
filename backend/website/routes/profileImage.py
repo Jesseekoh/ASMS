@@ -18,10 +18,8 @@ def download_image():
         student = storage.get(Student, session['id'])
 
         if student.profile_pic:
-            path = student.profile_pic[0].img
             filename = student.profile_pic[0].name
         else:
-            # path = default_image
             filename = default_name
 
         return send_from_directory(UPLOAD_FOLDER, filename)

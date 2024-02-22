@@ -13,3 +13,4 @@ from website.routes.result import *
 from website.routes.settings import *
 from website.routes.biodata import *
 from website.routes.profileImage import *
+from website.routes.fees import *

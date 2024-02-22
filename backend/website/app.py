@@ -44,7 +44,6 @@ def login():
             email  = data['email']
             if md5(password.encode()).hexdigest() == student.password:
                 session['id'] = student.id
-                session['SameSite'] = "None"
                 studentValue = parse.formatStudent(student)
                 studentValue['url'] = '/dashboard'
                 return jsonify(studentValue), 200

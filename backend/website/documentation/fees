@@ -1,0 +1,36 @@
+route: http://127.0.0.1:5000/fees
+Description: return the student billing/charges, like what the student neeed to pay.
+	     the data return will deffers based on the student level, major, or the
+	     student pesonal charges.
+	
+	     Personal charges are stored inside -> othersCharges array
+method: GET
+
+Value Return:
+
+{
+	"Total": 113500,
+	"fees": [
+	 {
+		"amount": 11500,
+		"name": "Work Space"
+	 },
+	 {
+		"amount": 27000,
+		"name": "Text Books"
+	 },
+	 {
+		"amount": 5000,
+		"name": "Sanitation"
+	 },
+	 {
+		"amount": 30000,
+		"name": "Hostel"
+	 },
+	 {
+		"amount": 40000,
+		"name": "Lessons Fee"
+	 }
+	],
+	"othersCharges": []
+}

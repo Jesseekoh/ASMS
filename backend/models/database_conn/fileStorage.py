@@ -19,8 +19,7 @@ from models.profile_pic import Profile_picture
 from hashlib import md5
 
 classes = {"Student": Student, "Major": Major, "Faculty": Faculty, "Fees": Fees,
-        "Course": Course, "Announcement": Announcement, "Profile_picture": Profile_picture,
-        "Result": Result, "State": State, "Level": Level, "Semister": Semister}
+        "Course": Course, "Announcement": Announcement, "Profile_picture": Profile_picture,        "Result": Result, "State": State, "Level": Level, "Semister": Semister, "Bill": Bill}
 
 class FileStorage:
     """serializes instances to a JSON file & deserializes back to instances"""
