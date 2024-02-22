@@ -26,8 +26,7 @@ const Dashboard = () => {
       </div>
     )
   }
-  const { first_name, email, last_name, gender, major, student_id, level } =
-    data
+  const { first_name, email, last_name, gender, major, level } = data
   return (
     <>
       <section className="dashboard mt-12 bg-white p-4 rounded">
