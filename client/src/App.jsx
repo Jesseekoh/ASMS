@@ -60,6 +60,14 @@ function App() {
           ),
         },
         {
+          path: '/fees',
+          element: (
+            <RequireAuth>
+              <Fees />
+            </RequireAuth>
+          ),
+        },
+        {
           path: '/announcements',
           element: (
             <RequireAuth>
