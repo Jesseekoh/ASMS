@@ -23,17 +23,17 @@ const NavbarWithSideBar = () => {
           <div className="nav-links flex gap-5">
             {username ? (
               <>
-                <span className="font-bold">{username}</span>
-                <Link to={'/logout'} className="font-bold">
+                <span className="font-bold text-sm">{username}</span>
+                <Link to={'/logout'} className="font-bold text-sm">
                   Log out
                 </Link>
               </>
             ) : (
               <>
-                <Link to={'/register'} className="font-bold">
+                <Link to={'/register'} className="font-bold text-sm">
                   Register
                 </Link>
-                <Link to={'/login'} className="font-bold">
+                <Link to={'/login'} className="font-bold text-sm">
                   Log in
                 </Link>
               </>
