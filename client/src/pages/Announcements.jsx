@@ -45,12 +45,16 @@ const Announcements = () => {
       <h2 className="text-3xl font-bold pb-10">Announcements</h2>
 
       <div className="announcements-container">
-        {data.map((post) => (
-          <div key={post.from}>
-            <h3 className="font-bold">{post.date}</h3>
-            <p className="">{post.info}</p>
-          </div>
-        ))}
+        {data.length > 0 ? (
+          data.map((post) => (
+            <div key={post.from}>
+              <h3 className="font-bold">{post.date}</h3>
+              <p className="">{post.info}</p>
+            </div>
+          ))
+        ) : (
+          <p>There are no announcements at the moment</p>
+        )}
       </div>
 
       <div className="announcements-container container"></div>
