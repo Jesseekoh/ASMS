@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchDashboardDetails } from '../helper'
 
+/**
+ * This component represents the dashboard page.
+ * @returns {ReactNode} a dashboard page
+ */
 const Dashboard = () => {
-  // const token = useAppStore((state) => state.token)
-  // const [dashboardDetails, setDashboardDetails] = useState()
-  // console.log(token)
-
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dashboard-info'],
     queryFn: fetchDashboardDetails,

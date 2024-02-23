@@ -1,5 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { DocumentPlusIcon } from '@heroicons/react/24/solid'
+
+/**
+ * This component represents the courses page.
+ * @returns {ReactNode} a courses page
+ */
 const Courses = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['courses'],

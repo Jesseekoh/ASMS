@@ -1,5 +1,10 @@
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar/Navbar'
+
+/**
+ * This component renders the error page
+ * @returns {ReactNode} a error page page
+ */
 const ErrorPage = () => {
   return (
     <>

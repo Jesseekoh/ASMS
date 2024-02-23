@@ -1,4 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
+
+/**
+ * This component renders the fees page.
+ * @returns {ReactNode} a fees page
+ */
 const Fees = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['results'],
