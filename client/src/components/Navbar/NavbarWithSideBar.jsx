@@ -1,15 +1,16 @@
 import { Link } from 'react-router-dom'
 import { useAppStore } from '../../../store'
 import SideNav from '../SideNav/SideNav'
-// import { useNavigate } from 'react-router-dom'
-// import { redirect } from 'react-router-dom'
 
+/**
+ * This component renders a nav with a sidenav
+ *
+ * @returns {ReactNode} a react header element
+ */
 const NavbarWithSideBar = () => {
   const { username } = useAppStore((state) => ({
     username: state.username,
-    // setUsername: state.setUsername,
   }))
-  console.log(username)
 
   return (
     <header className="bg-white fixed w-full top-0 shadow-md">

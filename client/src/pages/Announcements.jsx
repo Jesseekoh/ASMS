@@ -1,6 +1,9 @@
 import { useQuery } from '@tanstack/react-query'
 
-// import {u}
+/**
+ * This component represents the announcements page.
+ * @returns {ReactNode} an announcements page
+ */
 const Announcements = () => {
   const BASE_API_URL = import.meta.env.VITE_API_BASE_URL
   const { data, isLoading, isError } = useQuery({

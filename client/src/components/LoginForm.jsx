@@ -5,13 +5,15 @@ import { useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import { setSessionToken } from '../helper'
 
+/**
+ * This component renders a log in form
+ *
+ * @returns {ReactNode} a react login form element
+ */
+
 const LoginForm = () => {
-  // const { setToken } = useAppStore((state) => ({
-  //   setToken: state.setToken,
-  // }))
-
+  // state for the log in form
   const [loginEmail, setLoginEmail] = useState('')
-
   const [loginPassword, setLoginPassword] = useState('')
 
   const navigate = useNavigate()
@@ -24,8 +26,7 @@ const LoginForm = () => {
       },
       body: JSON.stringify(credentials),
     })
-    const json = await response.json()
-    return json
+    return response.json()
   }
 
   const handleSubmit = async (e) => {
@@ -47,7 +48,6 @@ const LoginForm = () => {
 
       <Form
         method="post"
-        // action="/login"
         onSubmit={handleSubmit}
         className="h-ful flex flex-col justify-center sm:py-12"
       >
