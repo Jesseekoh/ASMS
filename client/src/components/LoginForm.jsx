@@ -38,6 +38,7 @@ const LoginForm = () => {
     })
 
     if (userToken.url) {
+      console.log(userToken)
       setSessionToken(userToken)
       navigate(userToken.url)
     }

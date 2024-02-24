@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { DocumentPlusIcon } from '@heroicons/react/24/solid'
+import { fetchCoures } from '../helper'
 
 /**
  * This component represents the courses page.
@@ -8,12 +9,7 @@ import { DocumentPlusIcon } from '@heroicons/react/24/solid'
 const Courses = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['courses'],
-    queryFn: async () => {
-      const response = await fetch('http://localhost:5000/courses', {
-        credentials: 'include',
-      })
-      return response.json()
-    },
+    queryFn: fetchCoures,
   })
 
   if (isLoading) {
@@ -49,6 +45,7 @@ const Courses = () => {
       </section>
     )
   }
+  console.log(data)
   return (
     <section className="courses mt-8 bg-white p-4 rounded">
       <h2 className="text-3xl font-bold mb-10">Registered Courses</h2>

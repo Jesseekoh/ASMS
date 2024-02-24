@@ -3,16 +3,13 @@ import { useAppStore } from '../../../store'
 
 /**
  * This component renders a nav
- *
  * @returns {ReactNode} a react header element
  */
 const Navbar = () => {
-  // A
   const { username } = useAppStore((state) => ({
     username: state.username,
     setUsername: state.setUsername,
   }))
-  console.log(username)
 
   return (
     <header className="bg-white relative h-full top-0 shadow-md">
