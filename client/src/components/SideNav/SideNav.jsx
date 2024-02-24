@@ -8,6 +8,11 @@ import {
   BanknotesIcon,
 } from '@heroicons/react/24/solid'
 import './SideNav.css'
+
+/**
+ * Represents a sidenav component
+ * @returns a react element
+ */
 const SideNav = () => {
   return (
     <div className="sidenav  absolute h-[calc(h-full -  72px)]  w-max bg-yellow-500 overflow-y-auto">

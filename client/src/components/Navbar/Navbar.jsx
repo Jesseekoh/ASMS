@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom'
 import { useAppStore } from '../../../store'
 
+/**
+ * This component renders a nav
+ *
+ * @returns {ReactNode} a react header element
+ */
 const Navbar = () => {
+  // A
   const { username } = useAppStore((state) => ({
     username: state.username,
     setUsername: state.setUsername,

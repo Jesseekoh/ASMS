@@ -1,6 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchBiodata } from '../helper'
 
+/**
+ * This component represents the biodata page.
+ * @returns {ReactNode} a biodata page
+ */
 const Biodata = () => {
   const API_URL = import.meta.env.VITE_API_BASE_URL
   const { data, isLoading, isError } = useQuery({

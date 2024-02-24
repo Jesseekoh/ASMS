@@ -1,6 +1,10 @@
 import LoginForm from '../components/LoginForm'
 import Navbar from '../components/Navbar/Navbar'
 
+/**
+ * This component represents the log in page.
+ * @returns {ReactNode} a log in page
+ */
 const Login = () => {
   return (
     <>
