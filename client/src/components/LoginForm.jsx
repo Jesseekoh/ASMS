@@ -12,13 +12,14 @@ import { setSessionToken } from '../helper'
  */
 
 const LoginForm = () => {
+  const baseUrl = import.meta.env.VITE_API_BASE_URL
   // state for the log in form
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
 
   const navigate = useNavigate()
   const loginUser = async (credentials) => {
-    const response = await fetch('http://localhost:5000/login', {
+    const response = await fetch(baseUrl + '/login', {
       method: 'POST',
       credentials: 'include',
       headers: {
