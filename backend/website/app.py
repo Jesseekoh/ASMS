@@ -19,12 +19,12 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'
 app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={r"/*": {"origins": "http://54.198.34.163"}})
 
+allowed_ip = "54.198.34.163"
 
 @app.route('/', strict_slashes=False)
 # @cross_origin(supports_credentials=True)
-
 def main():
     return render_template('index.html')
 
@@ -52,7 +52,7 @@ def login():
         else:
             return jsonify({'error': 'invalid email or password!!'})
 
-    return render_template('login.html')
+    return jsonify(message="Unauthorized")
 
 @app.route('/logout', strict_slashes=False)
 @cross_origin(supports_credentials=True)
@@ -76,7 +76,7 @@ def signup():
         studentValue = parse.formatStudent(student)
         return jsonify(studentValue), 201
 
-    return render_template('signup.html'), 200
+    return jsonify(message="Unauthorized"), 403
 
 @app.route('/dashboard', strict_slashes=False)
 @cross_origin(supports_credentials=True)
@@ -125,11 +125,20 @@ def register_user(**data):
 
     return "Success"
 
+
+# Middleware to block requests from unauthorized IP addresses
+"""
+@app.before_request
+def block_unauthorized_ips():
+    client_ip = request.headers.get('X-Forwarded-For')
+    if client_ip != allowed_ip:
+        return jsonify(message="Unauthorized", ip=client_ip), 403
+
 @app.errorhandler(404)
 def page_not_found(e):
     error_dic = {"error": "Not found"}
     return jsonify(error_dic), 404
-
+"""
 @app.teardown_appcontext
 def close_db(error):
     """ Remove the current SQLAlchemy Session """
