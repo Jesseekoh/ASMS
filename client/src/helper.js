@@ -33,9 +33,20 @@ export const fetchDashboardDetails = async () => {
  * @returns {object} user biodata
  */
 export const fetchBiodata = async () => {
-  const response = await fetch(baseUrl + 'biodata', {
+  const response = await fetch(baseUrl + '/biodata', {
     credentials: 'include',
   })
 
+  return response.json()
+}
+
+/**
+ * This function fetches user courses from the api
+ * @returns {array} user courses
+ */
+export const fetchCoures = async () => {
+  const response = await fetch(baseUrl + '/courses', {
+    credentials: 'include',
+  })
   return response.json()
 }

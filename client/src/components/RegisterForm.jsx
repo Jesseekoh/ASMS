@@ -26,7 +26,7 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['majors'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:5001/api/v1/majors')
+      const response = await fetch(baseApiUrl + '/api/v1/majors')
       return response.json()
     },
   })
@@ -38,7 +38,7 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['states'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:5001/api/v1/states')
+      const response = await fetch(baseApiUrl + '/api/v1/states')
       return response.json()
     },
   })
@@ -50,13 +50,13 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['levels'],
     queryFn: async () => {
-      const response = await fetch('http://localhost:5001/api/v1/levels')
+      const response = await fetch(baseApiUrl + '/api/v1/levels')
       return response.json()
     },
   })
 
   const registerUser = async (credentials) => {
-    const response = await fetch('http://localhost:5000/signup', {
+    const response = await fetch(baseApiUrl + '/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
