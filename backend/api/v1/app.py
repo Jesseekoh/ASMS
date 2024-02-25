@@ -1,14 +1,23 @@
 from models import storage
 from api.v1.views import app_views
 from os import getenv
-from flask import Flask, render_template, jsonify, make_response
+from flask import Flask
 from flask_cors import CORS
 
+
+allowed_ip = '54.198.34.163'
 app = Flask(__name__)
 
 app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
-
+"""
+# Middleware to block requests from unauthorized IP addresses
+@app.before_request
+def block_unauthorized_ips():
+    client_ip = request.headers.get('X-Forwarded-For')
+    if client_ip != allowed_ip:
+        return jsonify(message="Unauthorized", ip=client_ip), 403
+"""
 @app.teardown_appcontext
 def close_db(error):
     """ Close Storage """
