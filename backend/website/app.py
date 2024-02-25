@@ -22,7 +22,7 @@ app.config['SESSION_COOKIE_NAME'] = 'student_session'
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 #app.config['SESSION_COOKIE_SECURE'] = True  # if using HTTPS
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SESSION_COOKIE_SAMESITE'] = 'None'
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 
@@ -90,7 +90,7 @@ def signup():
 @cross_origin(supports_credentials=True)
 def dashbord():
     """return student basic information"""
-    return jsonify(id=session.get('id'), cookies=request.cookies)
+    # return jsonify(id=session.get('id'), cookies=request.cookies)
     if 'id' in session:
         student = storage.get(Student, session['id'])
         if student:
