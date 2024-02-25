@@ -155,7 +155,7 @@ const RegisterForm = () => {
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
               >
                 <option value={''}>Select a Department</option>
-                {majorsData &&
+                {Array.isArray(majorsData) &&
                   majorsData.map((major) => (
                     <option key={major.id} value={major.id}>
                       {major.name}
@@ -174,7 +174,7 @@ const RegisterForm = () => {
                 onChange={(e) => setFormState(e.target.value)}
               >
                 <option value={''}>Select a State</option>
-                {statesData &&
+                {Array.isArray(statesData) &&
                   statesData.map((state) => (
                     <option key={state.id} value={state.id}>
                       {state.name}
@@ -193,7 +193,7 @@ const RegisterForm = () => {
                 className="border rounded-lg px-3 py-2 mt-1 mb-5 text-sm w-full"
               >
                 <option value={''}>Select your level</option>
-                {levelData &&
+                {Array.isArray(levelData) &&
                   levelData.map((level) => (
                     <option key={level.id} value={level.id}>
                       {level.level}
