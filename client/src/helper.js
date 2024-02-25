@@ -36,6 +36,7 @@ export const fetchBiodata = async () => {
   const response = await fetch(baseUrl + '/biodata', {
     credentials: 'include',
   })
+  console.log(baseUrl + '/biodata')
 
   return response.json()
 }

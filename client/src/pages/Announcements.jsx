@@ -9,7 +9,7 @@ const Announcements = () => {
   const { data, isLoading, isError } = useQuery({
     queryKey: ['announcements'],
     queryFn: async () => {
-      const response = await fetch(BASE_API_URL + 'announcement', {
+      const response = await fetch(BASE_API_URL + '/announcement', {
         credentials: 'include',
       })
       return response.json()
@@ -35,13 +35,11 @@ const Announcements = () => {
         <div className="announcements-container">
           Error loading Announcements
         </div>
-
-        <div className="announcements-container container"></div>
       </section>
     )
   }
   if (data) {
-    console.log(data.info)
+    console.log(data)
   }
   return (
     <section className="announcements mt-12 bg-white p-4 rounded">
