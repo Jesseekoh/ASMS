@@ -38,7 +38,7 @@ const Fees = () => {
     <section className="dashboard mt-12 bg-white p-4 rounded">
       <h2 className="text-3xl font-bold pb-10">Fees</h2>
       <div className="fees-content">
-        {data && data.fees.length > 0 ? (
+        {data.fees ? (
           data.fees.map((fee) => (
             <div key={fee.name}>
               <h3 className="font-bold">{fee.name}</h3>
