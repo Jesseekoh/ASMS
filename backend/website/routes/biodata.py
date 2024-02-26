@@ -44,7 +44,5 @@ def bioData():
 
         return jsonify(studentData)
 
-    # I added this to test redirect error
-    return jsonify({"msg": 'bulaba'}), 401
     return redirect(url_for('app_routes.login'))
 
