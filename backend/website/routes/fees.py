@@ -48,7 +48,7 @@ def fees():
             })
 
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 
 @app_routes.route('/fees/history', methods=['GET'], strict_slashes=False)
 def feesHistory():
@@ -91,7 +91,7 @@ def feesHistory():
             othersBills = []
         return jsonify(data)
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 
 @app_routes.route('/fees/make_payment', methods=['GET'], strict_slashes=False)
 def makePayment():
@@ -135,7 +135,7 @@ def makePayment():
         fees.save()
         return jsonify({'message': 'payment made successfully!'})
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 
 
 def totalBill(student):

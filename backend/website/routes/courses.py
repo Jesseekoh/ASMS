@@ -35,7 +35,7 @@ def my_courses():
         return jsonify(result)
 
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 
 @app_routes.route('/courses/student/major', methods=['GET'], strict_slashes=False)
 def major_courses():
@@ -50,4 +50,4 @@ def major_courses():
             result.append(course.name)
         return jsonify(result)
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))

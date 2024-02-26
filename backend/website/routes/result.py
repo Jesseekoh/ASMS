@@ -8,14 +8,15 @@ from models import storage
 from website.routes import app_routes
 from website.routes import session
 
+"""
 @app_routes.route('/result', methods=['GET'], strict_slashes=False)
 @cross_origin(supports_credentials=True)
 def result():
     if 'id' in session:
         return render_template('result.html')
 
-    return redirect(url_for('login'))
-
+    return redirect(url_for('app_routes.login'))
+"""
 @app_routes.route('/results/student', methods=['GET'], strict_slashes=False)
 def my_results():
     """return all result related to the student"""
@@ -65,7 +66,7 @@ def my_results():
         main['cgpa'] = float(grand_total/50)
         return jsonify(main)
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 
 @app_routes.route('/result/student', methods=['GET'], strict_slashes=False)
 def current_results():
@@ -112,4 +113,4 @@ def current_results():
 
         return jsonify(main)
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
