@@ -24,4 +24,4 @@ def download_image():
 
         return send_from_directory(UPLOAD_FOLDER, filename)
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))

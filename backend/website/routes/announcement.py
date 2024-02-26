@@ -25,5 +25,5 @@ def my_announcement():
         return jsonify(result)
 
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 

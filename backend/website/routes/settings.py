@@ -71,7 +71,7 @@ def upload():
             'message': 'Image uploaded successfully!'
             })
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
 
 @app_routes.route('/resetPassword/<oldPassword>/<newPassword>', methods=['GET'], strict_slashes=False)
 def resetPassword(oldPassword, newPassword):
@@ -93,4 +93,4 @@ def resetPassword(oldPassword, newPassword):
 
         return jsonify({'error': 'password must contain a value!'})
 
-    return redirect(url_for('login'))
+    return redirect(url_for('app_routes.login'))
