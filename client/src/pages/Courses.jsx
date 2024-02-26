@@ -71,7 +71,7 @@ const Courses = () => {
             </tr>
           </thead>
           <tbody>
-            {data && data.length != 0 ? (
+            {Array.isArray(data) && data.length != 0 ? (
               data.map((course, index) => (
                 <tr key={data.code}>
                   <td className="text-left px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3">

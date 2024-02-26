@@ -33,12 +33,17 @@ export const fetchDashboardDetails = async () => {
  * @returns {object} user biodata
  */
 export const fetchBiodata = async () => {
-  const response = await fetch(baseUrl + '/biodata', {
-    credentials: 'include',
-  })
-  console.log(baseUrl + '/biodata')
+  try {
+    const response = await fetch('https://www.for-ward.tech/asms/biodata', {
+      credentials: 'include',
+    })
 
-  return response.json()
+    if (response.ok) {
+      return response.json()
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 /**
@@ -49,5 +54,17 @@ export const fetchCoures = async () => {
   const response = await fetch(baseUrl + '/courses', {
     credentials: 'include',
   })
+  return response.json()
+}
+
+/**
+ * This function fetches student results
+ * @returns {array} user results
+ */
+export const fetchResults = async () => {
+  const response = await fetch(baseUrl + '/results', {
+    credentials: 'include',
+  })
+
   return response.json()
 }
