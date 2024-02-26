@@ -1,0 +1,19 @@
+[Unit]
+Description=Gunicorn instance to serve Aurora API
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/ASMS/backend
+ExecStart=/home/ubuntu/.local/bin/gunicorn -w 3 -b 0.0.0.0:5005 --access-logfile /tmp/ASMS_API-access.log --error-logfile /tmp/ASMS_API-error.log api.v1.app:app
+Restart=always
+SyslogIdentifier=Gunicorn-ASMS_API
+Environment=ASMS_MYSQL_USER=asms_dev
+Environment=ASMS_MYSQL_PWD=asms_dev_pwd
+Environment=ASMS_MYSQL_HOST=localhost
+Environment=ASMS_MYSQL_DB=asms_dev_db
+Environment=ASMS_TYPE_STORAGE=db
+
+[Install]
+WantedBy=multi-user.target

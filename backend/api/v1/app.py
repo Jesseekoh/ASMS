@@ -1,7 +1,7 @@
 from models import storage
 from api.v1.views import app_views
 from os import getenv
-from flask import Flask
+from flask import Flask, make_response
 from flask_cors import CORS
 
 
@@ -9,7 +9,7 @@ allowed_ip = '54.198.34.163'
 app = Flask(__name__)
 
 app.register_blueprint(app_views)
-cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+cors = CORS(app, resources={r"/asms/api/v1/*": {"origins": "*"}})
 """
 # Middleware to block requests from unauthorized IP addresses
 @app.before_request
