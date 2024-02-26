@@ -84,7 +84,6 @@ const RegisterForm = () => {
       })
       if (token.url) {
         navigate(token.url)
-        // console.log(token.url)
       }
     }
   }
