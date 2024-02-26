@@ -5,12 +5,10 @@ import { useQuery } from '@tanstack/react-query'
  * @returns {ReactNode} a fees page
  */
 const Fees = () => {
-  const baseUrl = import.meta.env.VITE_API_BASE_URL
-
   const { data, isLoading, isError } = useQuery({
     queryKey: ['results'],
     queryFn: async () => {
-      const response = await fetch(baseUrl + '/fees', {
+      const response = await fetch('https://www.for-ward.tech/asms' + '/fees', {
         credentials: 'include',
       })
       return response.json()

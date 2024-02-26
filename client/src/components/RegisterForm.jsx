@@ -16,7 +16,6 @@ const RegisterForm = () => {
   const [formPassword, setFormPassword] = useState('')
   const [formConfirmPassword, setFormConfirmPassword] = useState('')
 
-  const baseApiUrl = import.meta.env.VITE_API_BASE_URL
   const navigate = useNavigate()
   // queries
   const {
@@ -26,7 +25,9 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['majors'],
     queryFn: async () => {
-      const response = await fetch(baseApiUrl + '/api/v1/majors')
+      const response = await fetch(
+        'https://www.for-ward.tech' + '/api/v1/majors'
+      )
       return response.json()
     },
   })
@@ -38,7 +39,9 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['states'],
     queryFn: async () => {
-      const response = await fetch(baseApiUrl + '/api/v1/states')
+      const response = await fetch(
+        'https://www.for-ward.tech' + '/api/v1/states'
+      )
       return response.json()
     },
   })
@@ -50,13 +53,15 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['levels'],
     queryFn: async () => {
-      const response = await fetch(baseApiUrl + '/api/v1/levels')
+      const response = await fetch(
+        'https://www.for-ward.tech' + '/api/v1/levels'
+      )
       return response.json()
     },
   })
 
   const registerUser = async (credentials) => {
-    const response = await fetch(baseApiUrl + '/signup', {
+    const response = await fetch('https://www.for-ward.tech' + '/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
