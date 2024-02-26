@@ -44,5 +44,5 @@ def bioData():
 
         return jsonify(studentData)
 
-    return redirect(url_for('app_routes.login'))
+    # return redirect(url_for('app_routes.login'))
 
