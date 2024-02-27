@@ -6,6 +6,8 @@ import { fetchBiodata } from '../helper'
  * @returns {ReactNode} a biodata page
  */
 const Biodata = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ['biodata'],
     queryFn: fetchBiodata,
@@ -91,7 +93,7 @@ const Biodata = () => {
         <img
           className="col-span-1 "
           width={100}
-          src={'https://www.for-ward.tech/asms' + profileImageUrl}
+          src={API_BASE_URL + profileImageUrl}
           alt=""
         />
       </div>

@@ -6,6 +6,7 @@ import { fetchDashboardDetails } from '../helper'
  * @returns {ReactNode} a dashboard page
  */
 const Dashboard = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
   const { data, isLoading, isError } = useQuery({
     queryKey: ['dashboard-info'],
     queryFn: fetchDashboardDetails,
@@ -65,7 +66,7 @@ const Dashboard = () => {
           <img
             className="col-span-1 "
             width={200}
-            src={'https://www.for-ward.tech/asms' + '/profileImage'}
+            src={API_BASE_URL + '/profileImage'}
             alt=""
           />
         </div>

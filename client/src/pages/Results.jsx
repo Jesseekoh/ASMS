@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { fetchResults } from '../helper'
+import { toast } from 'react-toastify'
 
 /**
  * This component represents the results page.
@@ -10,7 +11,7 @@ const Results = () => {
     queryKey: ['results'],
     queryFn: fetchResults,
   })
-
+  if (isError) toast('Error fetching results')
   if (data) console.log(data)
   return (
     <section className="dashboard mt-12 bg-white p-4 rounded">
