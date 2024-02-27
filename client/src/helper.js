@@ -62,10 +62,15 @@ export const fetchCoures = async () => {
  * @returns {array} user results
  */
 export const fetchResults = async () => {
-  const response = await fetch(API_BASE_URL + '/student/result', {
-    credentials: 'include',
-  })
-  console.log(response)
-
-  return response.json()
+  try {
+    const response = await fetch(API_BASE_URL + '/result/student', {
+      credentials: 'include',
+    })
+    console.log(response)
+    if (response.ok) {
+      return response.json()
+    }
+  } catch (error) {
+    console.log('Error fectching results')
+  }
 }

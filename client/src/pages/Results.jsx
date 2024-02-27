@@ -16,7 +16,22 @@ const Results = () => {
   return (
     <section className="dashboard mt-12 bg-white p-4 rounded">
       <h2 className="text-3xl font-bold pb-10">Results</h2>
-      {/* {Array.isArray(data) && (data.map(result => ()))} */}
+      <div>
+        {isLoading && <p>Loading Results...</p>}
+        {isError && <p>Error fetching results</p>}
+        {data && (
+          <>
+            <div className="row grid grid-cols-2 gap-6 items-center mb-5">
+              <h3 className="font-semibold">CGPA:</h3>
+              <p className="font-bold">{data.cgpa}</p>
+            </div>
+            <div className="row grid grid-cols-2 gap-6 items-center mb-5">
+              <h3 className="font-semibold">Total:</h3>
+              <p className="font-bold">{data.grandtotal}</p>
+            </div>
+          </>
+        )}
+      </div>
     </section>
   )
 }
