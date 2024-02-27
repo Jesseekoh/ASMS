@@ -70,19 +70,21 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (formConfirmPassword != formPassword) {
-      toast("Password doesn't match")
+      toast.error("Password doesn't match")
     } else {
       const token = await registerUser({
         first_name: formFirstName,
-        email: formEmail,
         last_name: formLastName,
-        password: formPassword,
+        email: formEmail,
+        gender: formGender,
         major_id: formDepartment,
         state_id: formState,
         level_id: formLevel,
+        password: formPassword,
         confirm_password: formConfirmPassword,
       })
       if (token.url) {
+        toast.success('Account created successfully!')
         navigate(token.url)
       }
     }
