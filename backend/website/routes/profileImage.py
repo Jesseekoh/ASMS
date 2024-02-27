@@ -9,7 +9,7 @@ from website.routes import session
 from website.routes import UPLOAD_FOLDER
 from website.routes import default_img, default_name
 
-@app_routes.route('/profileImage', methods=['GET'], strict_slashes=False)
+@app_routes.route('/asms/profileImage', methods=['GET'], strict_slashes=False)
 @cross_origin(supports_credentials=True)
 def download_image():
     """Download student profile image"""
