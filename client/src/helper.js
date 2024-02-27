@@ -1,3 +1,4 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
 /**
  * This function sets userToken to sessionStorage
  * @param {*} userToken
@@ -21,12 +22,9 @@ export const getSessionToken = () => {
  * @returns {object} data
  */
 export const fetchDashboardDetails = async () => {
-  const response = await fetch(
-    'https://www.for-ward.tech/asms' + '/dashboard',
-    {
-      credentials: 'include',
-    }
-  )
+  const response = await fetch(API_BASE_URL + '/dashboard', {
+    credentials: 'include',
+  })
   return response.json()
 }
 
@@ -36,12 +34,9 @@ export const fetchDashboardDetails = async () => {
  */
 export const fetchBiodata = async () => {
   try {
-    const response = await fetch(
-      'https://www.for-ward.tech/asms' + '/biodata',
-      {
-        credentials: 'include',
-      }
-    )
+    const response = await fetch(API_BASE_URL + '/biodata', {
+      credentials: 'include',
+    })
 
     if (response.ok) {
       return response.json()
@@ -56,7 +51,7 @@ export const fetchBiodata = async () => {
  * @returns {array} user courses
  */
 export const fetchCoures = async () => {
-  const response = await fetch('https://www.for-ward.tech/asms' + '/courses', {
+  const response = await fetch(API_BASE_URL + '/courses', {
     credentials: 'include',
   })
   return response.json()
@@ -67,12 +62,9 @@ export const fetchCoures = async () => {
  * @returns {array} user results
  */
 export const fetchResults = async () => {
-  const response = await fetch(
-    'https://www.for-ward.tech/asms' + '/student/result',
-    {
-      credentials: 'include',
-    }
-  )
+  const response = await fetch(API_BASE_URL + '/student/result', {
+    credentials: 'include',
+  })
   console.log(response)
 
   return response.json()
