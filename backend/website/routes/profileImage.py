@@ -22,6 +22,7 @@ def download_image():
         else:
             filename = default_name
 
-        return send_from_directory(UPLOAD_FOLDER, filename)
+        return UPLOAD_FOLDER + filename
+        # return send_from_directory(UPLOAD_FOLDER, filename)
 
     return redirect(url_for('app_routes.login'))
