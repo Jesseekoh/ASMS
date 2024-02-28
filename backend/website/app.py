@@ -4,13 +4,14 @@ from flask_cors import CORS, cross_origin
 from flask import Flask
 from flask import jsonify
 from flask import render_template, request, redirect, url_for
+from flask_session import Session
 from models import storage
 from models.student import Student
 from hashlib import md5
 from .utils import stringUtils, validate, parse
 from website.routes import app_routes
 from website.routes import session
-from website.routes import UPLOAD_FOLDER, default_img
+from website.routes import UPLOAD_FOLDER, default_img, DATABASE_URI
 import secrets
 from werkzeug.middleware.proxy_fix import ProxyFix
 
@@ -20,15 +21,17 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 app.config['SESSION_COOKIE_NAME'] = 'student_session'
 
 app.config['SESSION_COOKIE_HTTPONLY'] = True
-#app.config['SESSION_COOKIE_SECURE'] = True  # if using HTTPS
+app.config['SESSION_COOKIE_SECURE'] = True  # if using HTTPS
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
+app.config['SESSION_COOKIE_SAMESITE'] = 'Strict'
 app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 
 CORS(app, resources={r"/asms/*": {"origins": "*"}})
-
-allowed_ip = "54.198.34.163"
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
+app.config['SESSION_TYPE'] = 'sqlalchemy'
+app.config['SESSION_SQLALCHEMY'] = storage.session
+db_sess = Session(app)
 
 @app.route('/', strict_slashes=False)
 # @cross_origin(supports_credentials=True)

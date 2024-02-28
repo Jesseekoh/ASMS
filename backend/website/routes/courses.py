@@ -11,8 +11,8 @@ from website.routes import session
 @cross_origin(supports_credentials=True)
 def my_courses():
     """return all course related to the student"""
-    if 'id' in session:
-        student = storage.get(Student, session['id'])
+    if session.get('id'):
+        student = storage.get(Student, session.get('id'))
 
         value = {}
         result = []

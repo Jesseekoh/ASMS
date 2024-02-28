@@ -25,8 +25,8 @@ classes = {"Student": Student, "Major": Major, "Faculty": Faculty, "Fees": Fees,
 
 class DBStorage:
     """interaacts with the MySQL database"""
-    __engine = None
-    __session = None
+    engine = None
+    session = None
 
     def __init__(self):
         """Instantiate a DBStorage object"""

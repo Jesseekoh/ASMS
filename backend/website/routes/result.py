@@ -17,6 +17,7 @@ def result():
 
     return redirect(url_for('app_routes.login'))
 """
+
 @app_routes.route('/results/student', methods=['GET'], strict_slashes=False)
 def my_results():
     """return all result related to the student"""

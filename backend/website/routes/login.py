@@ -1,11 +1,15 @@
 #!/usr/bin/python3
+import json
+import base64
 from flask import render_template, request, redirect, url_for, redirect
-from flask import jsonify, session
+from flask import jsonify
+from website.routes import session
 from flask_cors import cross_origin
 from models import storage
 from models.student import Student
 from hashlib import md5
 from website.utils import stringUtils, validate, parse
+from website.utils.utilities import sess
 from website.routes import app_routes
 from website.routes import default_img
 
@@ -25,6 +29,7 @@ def login():
             email  = data['email']
             if md5(password.encode()).hexdigest() == student.password:
                 session['id'] = student.id
+
                 studentValue = parse.formatStudent(student)
                 studentValue['url'] = '/dashboard'
                 return jsonify(studentValue), 200
@@ -64,7 +69,7 @@ def signup():
 @cross_origin(supports_credentials=True)
 def dashbord():
     """return student basic information"""
-    # return jsonify(id=session.get('id'), cookies=request.cookies)
+
     if 'id' in session:
         student = storage.get(Student, session['id'])
         if student:
@@ -80,9 +85,7 @@ def dashbord():
         studentValue['profileImageUrl'] = '/profileImage'
             
         return jsonify(studentValue)
-
-    return redirect(url_for('app_routes.login'))
-
+    return jsonify(id=value)
 
 def register_user(**data):
     """Register a new user."""
