@@ -17,6 +17,8 @@ from models.profile_pic import Profile_picture
 from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.pool import QueuePool
+from models.database_conn.config import DATABASE_URI, ASMS_ENV
 
 classes = {"Student": Student, "Major": Major, "Faculty": Faculty, "Fees": Fees, 
         "OtherBill": OtherBill, "Course": Course, "Announcement": Announcement,
@@ -25,21 +27,17 @@ classes = {"Student": Student, "Major": Major, "Faculty": Faculty, "Fees": Fees,
 
 class DBStorage:
     """interaacts with the MySQL database"""
-    engine = None
+    __engine = None
     session = None
 
     def __init__(self):
         """Instantiate a DBStorage object"""
-        ASMS_MYSQL_USER = getenv('ASMS_MYSQL_USER')
-        ASMS_MYSQL_PWD = getenv('ASMS_MYSQL_PWD')
-        ASMS_MYSQL_HOST = getenv('ASMS_MYSQL_HOST')
-        ASMS_MYSQL_DB = getenv('ASMS_MYSQL_DB')
-        ASMS_ENV = getenv('ASMS_ENV')
-        self.__engine = create_engine('mysql+mysqldb://{}:{}@{}/{}'.
-                                      format(ASMS_MYSQL_USER,
-                                             ASMS_MYSQL_PWD,
-                                             ASMS_MYSQL_HOST,
-                                             ASMS_MYSQL_DB))
+
+        self.__engine = create_engine(
+                DATABASE_URI, pool_size=20,
+                pool_timeout=30, pool_recycle=3600,
+                poolclass=QueuePool)
+
         if ASMS_ENV == "test":
             Base.metadata.drop_all(self.__engine)
 
