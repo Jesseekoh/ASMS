@@ -82,37 +82,3 @@ class Validate:
         return "Success"
 
 
-def sess():
-    """Decode user session cookies"""
-    encoded_string = request.cookies.get('student_session')
-
-    if encoded_string:
-        # Ensure the length of the encoded string is a multiple of 4
-        padding_length = 4 - (len(encoded_string) % 4)
-        encoded_string += '=' * padding_length
-
-        try:
-            # Decode the Base64 string
-            decoded_bytes = base64.b64decode(encoded_string)
-
-            # Find the index of the first non-JSON character
-            end_of_json_index = decoded_bytes.index(b'}') + 1
-
-            # Extract the JSON part
-            json_part = decoded_bytes[:end_of_json_index]
-
-            # Decode the JSON part
-            decoded_json = json_part.decode('utf-8')
-
-            # Parse the JSON string
-            data = json.loads(decoded_json)
-
-            return data
-
-        except (base64.binascii.Error, ValueError, KeyError, IndexError) as e:
-            # Handle decoding or parsing errors
-            print(f"Error decoding session cookie: {e}")
-            return None
-
-    return None
-

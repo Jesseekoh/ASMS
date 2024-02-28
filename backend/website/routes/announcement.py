@@ -5,7 +5,6 @@ from models.student import Student
 from models import storage
 from website.routes import app_routes
 from website.routes import session
-from website.utils.utilities import sess
 
 @app_routes.route('/announcement', methods=['GET'], strict_slashes=False)
 @cross_origin(supports_credentials=True)

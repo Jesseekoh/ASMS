@@ -9,7 +9,6 @@ from models import storage
 from models.student import Student
 from hashlib import md5
 from website.utils import stringUtils, validate, parse
-from website.utils.utilities import sess
 from website.routes import app_routes
 from website.routes import default_img
 

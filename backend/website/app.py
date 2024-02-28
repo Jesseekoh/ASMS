@@ -28,6 +28,7 @@ app.secret_key = secrets.token_hex(16) #This will be changed later
 app.register_blueprint(app_routes)
 
 CORS(app, resources={r"/asms/*": {"origins": "*"}})
+
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.config['SESSION_TYPE'] = 'sqlalchemy'
 app.config['SESSION_SQLALCHEMY'] = storage.session

@@ -7,7 +7,6 @@ from website.routes import app_routes
 from website.routes import session
 from website.utils import parse
 from website.routes import default_img
-from website.utils.utilities import sess
 
 @app_routes.route('/biodata', methods=['GET'], strict_slashes=False)
 @cross_origin(supports_credentials=True)
