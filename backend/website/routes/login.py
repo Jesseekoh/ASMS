@@ -1,16 +1,15 @@
 #!/usr/bin/python3
-import json
 import base64
-from flask import render_template, request, redirect, url_for, redirect
-from flask import jsonify
-from website.routes import session
+import json
+from hashlib import md5
+
+from flask import jsonify, redirect, render_template, request, url_for
 from flask_cors import cross_origin
 from models import storage
 from models.student import Student
-from hashlib import md5
-from website.utils import stringUtils, validate, parse
-from website.routes import app_routes
-from website.routes import default_img
+from website.routes import app_routes, default_img, session
+from website.utils import parse, stringUtils, validate
+
 
 @app_routes.route('/login', methods=['GET', 'POST'], strict_slashes=False)
 @cross_origin(supports_credentials=True)
@@ -18,12 +17,14 @@ def login():
     if request.method == 'POST':
         data = request.get_json()
         student = storage.get_student(Student, data.get('email'))
-
         status = validate.validate_login(**data)
         if status != 'Success':
             return jsonify({'error': status})
 
         if student:
+            
+            print('password', data['password'])
+            print('email', data['email'])
             password = data['password']
             email  = data['email']
             if md5(password.encode()).hexdigest() == student.password:
