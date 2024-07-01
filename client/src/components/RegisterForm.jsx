@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 const RegisterForm = () => {
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
+  const API_BASE_URL_1 = import.meta.env.VITE_API_BASE_URL_1
   const [formFirstName, setFormFirstName] = useState('')
   const [formLastName, setFormLastName] = useState('')
   const [formDepartment, setFormDepartment] = useState('')
@@ -26,7 +26,7 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['majors'],
     queryFn: async () => {
-      const response = await fetch(API_BASE_URL + '/api/v1/majors')
+      const response = await fetch(API_BASE_URL_1 + '/asms/api/v1/majors')
       return response.json()
     },
   })
@@ -38,7 +38,7 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['states'],
     queryFn: async () => {
-      const response = await fetch(API_BASE_URL + '/api/v1/states')
+      const response = await fetch(API_BASE_URL_1 + '/asms/api/v1/states')
       return response.json()
     },
   })
@@ -50,13 +50,13 @@ const RegisterForm = () => {
   } = useQuery({
     queryKey: ['levels'],
     queryFn: async () => {
-      const response = await fetch(API_BASE_URL + '/api/v1/levels')
+      const response = await fetch(API_BASE_URL_1 + '/asms/api/v1/levels')
       return response.json()
     },
   })
 
   const registerUser = async (credentials) => {
-    const response = await fetch(API_BASE_URL + '/signup', {
+    const response = await fetch(API_BASE_URL_1 + '/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

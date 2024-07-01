@@ -1,9 +1,9 @@
-from models import storage
-from api.v1.views import app_views
 from os import getenv
+
+from api.v1.views import app_views
 from flask import Flask, make_response
 from flask_cors import CORS
-
+from models import storage
 
 allowed_ip = '54.198.34.163'
 app = Flask(__name__)

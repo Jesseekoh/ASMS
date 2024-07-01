@@ -17,12 +17,12 @@ def allowed_img(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app_routes.route('/settings', methods=['GET'], strict_slashes=False)
-def settings():
-    if 'id' in session:
-        return render_template('settings.html')
+# @app_routes.route('/settings', methods=['GET'], strict_slashes=False)
+# def settings():
+#     if 'id' in session:
+#         return render_template('settings.html')
 
-    return redirect(url_for('login'))
+#     return redirect(url_for('login'))
 
 @app_routes.route('/settings/upload', methods=['POST'], strict_slashes=False)
 def upload():
@@ -64,20 +64,23 @@ def upload():
                 })
 
         data['student_id'] = session['id']
-        image = Profile_picture(**data);
+        image = Profile_picture(**data)
         image.save()
 
         return jsonify({
             'message': 'Image uploaded successfully!'
             })
 
-    return redirect(url_for('app_routes.login'))
+    return jsonify({'msg': 'User not signed in'}), 401
 
-@app_routes.route('/resetPassword/<oldPassword>/<newPassword>', methods=['GET'], strict_slashes=False)
+
+@app_routes.route('/resetPassword', methods=['POST'], strict_slashes=False)
 def resetPassword(oldPassword, newPassword):
     """reset student password"""
     if 'id' in session:
         student = storage.get(Student, session['id'])
+        newPassword = request.get_json('newPassword')
+        oldPassword = request.get_json('newPassword')
 
 
         if newPassword and oldPassword:
@@ -87,10 +90,10 @@ def resetPassword(oldPassword, newPassword):
                     student.save()
                     return jsonify({'success': 'password updated successfully!'})
                 else:
-                    return jsonify({'error': 'Password Incorrect!'})
+                    return jsonify({'error': 'Password Incorrect!'}), 403
             else:
-                return jsonify({'error': 'Password too short!'})
+                return jsonify({'error': 'Password too short!'}), 403
 
-        return jsonify({'error': 'password must contain a value!'})
+        return jsonify({'error': 'password must contain a value!'}), 403
 
-    return redirect(url_for('app_routes.login'))
+    return jsonify({'msg': 'User not signed in'}), 401
