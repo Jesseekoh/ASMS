@@ -1,7 +1,7 @@
 from os import getenv
 
 from api.v1.views import app_views
-from flask import Flask, make_response
+from flask import Flask, make_response, jsonify
 from flask_cors import CORS
 from models import storage
 

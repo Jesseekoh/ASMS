@@ -16,104 +16,107 @@ import RequireAuth from './components/RequireAuth';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 
-const Announcements = lazy(() => import('./pages/Announcements'))
-const Biodata = lazy(() => import('./pages/Biodata'))
-const Courses = lazy(() => import('./pages/Courses'))
-const Dashboard = lazy(() => import('./pages/Dashboard'))
-const Fees = lazy(() => import('./pages/Fees'))
-const Login = lazy(() => import('./pages/Login'))
+const Announcements = lazy(() => import('./pages/Announcements'));
+const Biodata = lazy(() => import('./pages/Biodata'));
+const Courses = lazy(() => import('./pages/Courses'));
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Fees = lazy(() => import('./pages/Fees'));
+const Login = lazy(() => import('./pages/Login'));
 const Register = lazy(() => import('./pages/Register'));
 const queryClient = new QueryClient();
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: '*',
-      element: <ErrorPage />,
-    },
-    {
-      element: <Layout />,
+    const router = createBrowserRouter([
+        {
+            path: '*',
+            element: <ErrorPage />,
+        },
+        {
+            element: <Layout />,
 
-      errorElement: <ErrorPage />,
-      children: [
-        {
-          path: '/',
-          element: (
-            <RequireAuth>
-              <Dashboard />
-            </RequireAuth>
-          ),
-        },
+            errorElement: <ErrorPage />,
+            children: [
+                {
+                    path: '/',
+                    element: (
+                        <RequireAuth>
+                            <Dashboard />
+                        </RequireAuth>
+                    ),
+                },
 
-        {
-          path: '/dashboard',
-          element: (
-            <RequireAuth>
-              <Dashboard />
-            </RequireAuth>
-          ),
+                {
+                    path: '/dashboard',
+                    element: (
+                        <RequireAuth>
+                            <Dashboard />
+                        </RequireAuth>
+                    ),
+                },
+                {
+                    path: '/biodata',
+                    element: (
+                        <RequireAuth>
+                            <Biodata />
+                        </RequireAuth>
+                    ),
+                },
+                {
+                    path: '/courses',
+                    element: (
+                        <RequireAuth>
+                            <Courses />
+                        </RequireAuth>
+                    ),
+                },
+                {
+                    path: '/fees',
+                    element: (
+                        <RequireAuth>
+                            <Fees />
+                        </RequireAuth>
+                    ),
+                },
+                {
+                    path: '/announcements',
+                    element: (
+                        <RequireAuth>
+                            <Announcements />
+                        </RequireAuth>
+                    ),
+                },
+                {
+                    path: '/results',
+                    element: (
+                        <RequireAuth>
+                            <Results />
+                        </RequireAuth>
+                    ),
+                },
+            ],
         },
         {
-          path: '/biodata',
-          element: (
-            <RequireAuth>
-              <Biodata />
-            </RequireAuth>
-          ),
+            path: '/register',
+            element: (
+                <Suspense>
+                    <Register />
+                </Suspense>
+            ),
         },
         {
-          path: '/courses',
-          element: (
-            <RequireAuth>
-              <Courses />
-            </RequireAuth>
-          ),
+            path: '/login',
+            element: <Login />,
         },
         {
-          path: '/fees',
-          element: (
-            <RequireAuth>
-              <Fees />
-            </RequireAuth>
-          ),
+            path: '/logout',
         },
-        {
-          path: '/announcements',
-          element: (
-            <RequireAuth>
-              <Announcements />
-            </RequireAuth>
-          ),
-        },
-        {
-          path: '/results',
-          element: (
-            <RequireAuth>
-              <Results />
-            </RequireAuth>
-          ),
-        },
-      ],
-    },
-    {
-      path: '/register',
-      element: (
-        <Suspense>
-          <Register />
-        </Suspense>
-      ),
-    },
-    {
-      path: '/login',
-      element: <Login />,
-    },
-  ]);
+    ]);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  );
+    return (
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+        </QueryClientProvider>
+    );
 }
 
 export default App;
